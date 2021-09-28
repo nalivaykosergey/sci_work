@@ -1,9 +1,10 @@
 #!/usr/bin/gnuplot -persist
 set encoding utf8
 set term pdfcairo font "Arial,9"
-set out 'queue.pdf'
+set out ARG2
 set title "Queue Length"
 set style line 2
 set xlabel "t"
+print ARG0
 set ylabel "Packets"
-plot "qlen.txt" using ($1):($2) with lines title "Q"
+plot ARG1 using ($1):($2) with lines title "Q"
