@@ -4,7 +4,7 @@ from mininet.node import CPULimitedHost
 from mininet.link import TCLink
 from Model import OwnTopology
 
-
+# Функция, которая моделирует запуск сети и ее остановку
 def simulation():
     topology = OwnTopology()
     net = Mininet(topo=topology, host=CPULimitedHost, link=TCLink)
