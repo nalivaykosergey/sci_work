@@ -84,7 +84,7 @@ sudo tc qdisc replace dev s2-eth1 root handle 10: tbf rate 100mbit burst 50000 l
 sudo tc qdisc add dev s2-eth1 parent 10: handle 20: netem loss 0.01% delay 30ms 7ms distribution normal
 
 
-red настройка вычисляются следующим образом:
+red настройки вычисляются следующим образом:
 
 min = (задержка)*bandwidt(bits/s), 
 
