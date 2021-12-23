@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+sd}{    Функция обработки данных iPerf.}
+\PYG{l+s+sd}{    Данные обрабатываются из предположения, что нас}
+\PYG{l+s+sd}{    интересуют только данные, перечисленные в}
+\PYG{l+s+sd}{    словаре y. Функция возвращает словарь [x,y].}
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{k}{def} \PYG{n+nf}{parse\PYGZus{}netstat\PYGZus{}file}\PYG{p}{(}\PYG{n}{net\PYGZus{}data\PYGZus{}file}\PYG{p}{):}
+    \PYG{n}{raw\PYGZus{}data} \PYG{o}{=} \PYG{n}{json}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{net\PYGZus{}data\PYGZus{}file}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{n}{y} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}bytes\PYGZdq{}}\PYG{p}{:} \PYG{p}{[[],}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}title\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Количество переданных байт\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Время (с)\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}MB\PYGZdq{}}\PYG{p}{\PYGZcb{}],}
+        \PYG{l+s+s2}{\PYGZdq{}cwnd\PYGZdq{}}\PYG{p}{:} \PYG{p}{[[],}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}title\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Окно перегрузки\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Время (с)\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}cwnd\PYGZdq{}}\PYG{p}{\PYGZcb{}],}
+        \PYG{l+s+s2}{\PYGZdq{}MTU\PYGZdq{}}\PYG{p}{:} \PYG{p}{[[],}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}title\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Максимальный размер пакета\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Время (с)\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}B\PYGZdq{}}\PYG{p}{\PYGZcb{}],}
+        \PYG{l+s+s2}{\PYGZdq{}retransmits\PYGZdq{}}\PYG{p}{:} \PYG{p}{[[],}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}title\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Повторно переданные пакеты\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Время (с)\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Количество пакетов\PYGZdq{}}\PYG{p}{\PYGZcb{}],}
+        \PYG{l+s+s2}{\PYGZdq{}rtt\PYGZdq{}}\PYG{p}{:} \PYG{p}{[[],}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}title\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Круговая задержка\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Время (с)\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}ms\PYGZdq{}}\PYG{p}{\PYGZcb{}],}
+        \PYG{l+s+s2}{\PYGZdq{}rttvar\PYGZdq{}}\PYG{p}{:} \PYG{p}{[[],}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}title\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Отклонение круговой задержки\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Время (с)\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}ms\PYGZdq{}}\PYG{p}{\PYGZcb{}],}
+        \PYG{l+s+s2}{\PYGZdq{}throughput\PYGZdq{}}\PYG{p}{:} \PYG{p}{[[],}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}title\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Пропускная способность\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Время (с)\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}MBits\PYGZdq{}}\PYG{p}{\PYGZcb{}]}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+sd}{        Цикл считывания данных из json\PYGZhy{}файла.}
+\PYG{l+s+sd}{        В список x сохраняются временные данные, а}
+\PYG{l+s+sd}{        в словарь y \PYGZhy{} все остальные. Характеристи для y}
+\PYG{l+s+sd}{        нормируются в зависимости от требуемой}
+\PYG{l+s+sd}{        шкалы измерения данных.}
+\PYG{l+s+sd}{    \PYGZsq{}\PYGZsq{}\PYGZsq{}}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{raw\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}intervals\PYGZdq{}}\PYG{p}{]:}
+        \PYG{n}{tmp\PYGZus{}data} \PYG{o}{=} \PYG{n}{i}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}streams\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}
+        \PYG{n}{x}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}start\PYGZdq{}}\PYG{p}{])}
+        \PYG{n}{y}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}bytes\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}bytes\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mi}{1024} \PYG{o}{/} \PYG{l+m+mi}{1024}\PYG{p}{)}
+        \PYG{n}{y}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}cwnd\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}snd\PYGZus{}cwnd\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mi}{1024}\PYG{p}{)}
+        \PYG{n}{y}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}MTU\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}pmtu\PYGZdq{}}\PYG{p}{])}
+        \PYG{n}{y}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}retransmits\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}retransmits\PYGZdq{}}\PYG{p}{])}
+        \PYG{n}{y}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}rtt\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}rtt\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mi}{1000}\PYG{p}{)}
+        \PYG{n}{y}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}rttvar\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}rttvar\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mi}{1000}\PYG{p}{)}
+        \PYG{n}{y}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}throughput\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}bits\PYGZus{}per\PYGZus{}second\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mi}{1000000}\PYG{p}{)}
+    \PYG{k}{return} \PYG{p}{[}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{]}
+\end{Verbatim}

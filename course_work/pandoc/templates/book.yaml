@@ -1,0 +1,11 @@
+---
+toc-title: "Содержание"
+toc: true # Table of contents
+toc_depth: 2
+lof: true # List of figures
+lot: true # List of tables
+fontsize: 8pt
+# linestretch: 1.5
+book: true
+papersize: a5
+---
