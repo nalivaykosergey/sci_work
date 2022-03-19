@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-tc \PYGZhy{}s qdisc show dev s1\PYGZhy{}eth1
-\end{Verbatim}

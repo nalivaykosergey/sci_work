@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-  tc qdisc \PYG{o}{[}add/replace\PYG{o}{]} dev \PYG{o}{[}interface\PYG{o}{]} \PYG{o}{[}root/parent num\PYG{o}{]} handle \PYG{o}{[}number\PYG{o}{]}: \PYG{o}{[}Queue Discipline\PYG{o}{]} \PYG{o}{[}discipline parameters\PYG{o}{]}
-\end{Verbatim}

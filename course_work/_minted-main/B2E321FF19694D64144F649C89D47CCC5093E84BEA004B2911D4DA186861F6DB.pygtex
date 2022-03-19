@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-git clone git://github.com/mininet/mininet \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{cd} mininet
-\end{Verbatim}
