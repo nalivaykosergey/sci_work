@@ -1,0 +1,27 @@
+---
+toc-title: "Содержание"
+toc: true # Table of contents
+toc_depth: 2
+lof: true # List of figures
+lot: true # List of tables
+fontsize: 13pt
+linestretch: 1.5
+report: true
+has-frontmatter: false
+papersize: a4
+disable-headvskip: true
+chapterprefix: false
+headings: "standardclasses"
+headings-size: "small" # big | normal | small
+centering-section: false
+oneside: true
+geometry:
+  - left=30mm
+  - right=10mm
+  - top=20mm
+  - bottom=20mm
+  - nohead
+  - includefoot=true
+disable-header-and-footer: true
+biblatex: true
+---

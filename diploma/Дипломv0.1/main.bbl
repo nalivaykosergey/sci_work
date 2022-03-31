@@ -1,0 +1,486 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{article_apeotba}{inproceedings}{useauthor=false}
+      \name{author}{5}{}{%
+        {{hash=504fb7fc81c868a87d55190a392eaef8}{%
+           family={Gomez},
+           familyi={G\bibinitperiod},
+           given={Jose},
+           giveni={J\bibinitperiod}}}%
+        {{hash=baad6c8ad5a9c04f8869faae5a8d20a3}{%
+           family={Kfoury},
+           familyi={K\bibinitperiod},
+           given={Elie},
+           giveni={E\bibinitperiod}}}%
+        {{hash=e444405db6633053b64873d9acc73073}{%
+           family={Crichigno},
+           familyi={C\bibinitperiod},
+           given={Jorge},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2260eb7a7f59dc1e210f675db84e6994}{%
+           family={Bou-Harb},
+           familyi={B\bibinithyphendelim H\bibinitperiod},
+           given={Elias},
+           giveni={E\bibinitperiod}}}%
+        {{hash=940fa42d495ac87907ebc0a4bf68f580}{%
+           family={Srivastava},
+           familyi={S\bibinitperiod},
+           given={Gautam},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{authorbibnamehash}{3781d57ccbdbd128ff6b301b917f5b1d}
+      \strng{authornamehash}{3781d57ccbdbd128ff6b301b917f5b1d}
+      \strng{authorfullhash}{e65e80e8b59941ff463e66c13cc0462d}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2020 43rd International Conference on Telecommunications and Signal Processing (TSP)}
+      \field{title}{A Performance Evaluation of TCP BBRv2 Alpha}
+      \field{year}{2020}
+    \endentry
+    \entry{cli}{online}{}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labeltitlesource}{title}
+      \field{title}{Command-line interface}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Command-line_interface
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Command-line_interface
+      \endverb
+    \endentry
+    \entry{rfc8312}{report}{useauthor=false}
+      \name{author}{6}{}{%
+        {{hash=c2efba424e6284520d54279efcc92414}{%
+           family={Rhee},
+           familyi={R\bibinitperiod},
+           given={Injong},
+           giveni={I\bibinitperiod}}}%
+        {{hash=fad32cccb1bee56c02ce5156c010ddd4}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Lisong},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0679c4327ff18f6a4b434542e7d6b889}{%
+           family={Ha},
+           familyi={H\bibinitperiod},
+           given={Sangtae},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2dde6dc707367012b6602b83df1f966c}{%
+           family={Zimmermann},
+           familyi={Z\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2419ffad48436bd9ba957e4ba01053e2}{%
+           family={Eggert},
+           familyi={E\bibinitperiod},
+           given={Lars},
+           giveni={L\bibinitperiod}}}%
+        {{hash=5c37dafe3a9452ea5a192f1a6ebfe133}{%
+           family={Scheffenegger},
+           familyi={S\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {RFC Editor}%
+      }
+      \list{publisher}{1}{%
+        {RFC Editor}%
+      }
+      \strng{authorbibnamehash}{ca74ff6f424f3cdd4a0b169bc6f77b84}
+      \strng{authornamehash}{ca74ff6f424f3cdd4a0b169bc6f77b84}
+      \strng{authorfullhash}{c09d02a20723fe5ac13f6d4c64142e09}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Internet Requests for Comments}
+      \field{month}{02}
+      \field{title}{CUBIC for Fast Long-Distance Networks}
+      \field{type}{RFC}
+      \field{year}{2018}
+      \field{number}{8312}
+      \range{number}{1}
+      \verb{urlraw}
+      \verb https://www.rfc-editor.org/rfc/rfc8312.txt
+      \endverb
+      \verb{url}
+      \verb https://www.rfc-editor.org/rfc/rfc8312.txt
+      \endverb
+    \endentry
+    \entry{rfc5166}{report}{}
+      \name{author}{1}{}{%
+        {{hash=7601832cf3b530105ae9618be944c189}{%
+           family={Floyd},
+           familyi={F\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {RFC Editor}%
+      }
+      \list{publisher}{1}{%
+        {RFC Editor}%
+      }
+      \strng{namehash}{7601832cf3b530105ae9618be944c189}
+      \strng{fullhash}{7601832cf3b530105ae9618be944c189}
+      \strng{bibnamehash}{7601832cf3b530105ae9618be944c189}
+      \strng{authorbibnamehash}{7601832cf3b530105ae9618be944c189}
+      \strng{authornamehash}{7601832cf3b530105ae9618be944c189}
+      \strng{authorfullhash}{7601832cf3b530105ae9618be944c189}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Internet Requests for Comments}
+      \field{month}{03}
+      \field{title}{Metrics for the Evaluation of Congestion Control Mechanisms}
+      \field{type}{RFC}
+      \field{year}{2008}
+      \field{number}{5166}
+      \range{number}{1}
+      \verb{urlraw}
+      \verb https://www.rfc-editor.org/rfc/rfc5166.txt
+      \endverb
+      \verb{url}
+      \verb https://www.rfc-editor.org/rfc/rfc5166.txt
+      \endverb
+    \endentry
+    \entry{article_iosctfim}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=9dafbfbb8ffff5191a6198b1a3a83476}{%
+           family={Pal},
+           familyi={P\bibinitperiod},
+           given={Chandan},
+           giveni={C\bibinitperiod}}}%
+        {{hash=64f6d22d45baf11d9c9a6f96d10a8a4e}{%
+           family={Veena},
+           familyi={V\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=399ede8d581028f55b6b04137f3fa327}{%
+           family={Rustagi},
+           familyi={R\bibinitperiod},
+           given={Ram\bibnamedelima P.},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=38febd529fe5580f4fbde02970021a34}{%
+           family={Murthy},
+           familyi={M\bibinitperiod},
+           given={K.\bibnamedelimi N.\bibnamedelimi B.},
+           giveni={K\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{146ddcac583447b819b47dbe9f05270a}
+      \strng{authornamehash}{146ddcac583447b819b47dbe9f05270a}
+      \strng{authorfullhash}{b0d3a04b38656514082ed11f2b12f869}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{2014 Asia-Pacific Conference on Computer Aided System Engineering (APCASE)}
+      \field{title}{Implementation of simplified custom topology framework in Mininet}
+      \field{year}{2014}
+    \endentry
+    \entry{article_masdntp}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=30dab765b5fab15afc113fdad7f2a052}{%
+           family={Kaur},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=3cabde1c36e0351e0998c0309d31bc0e}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Japinder},
+           giveni={J\bibinitperiod}}}%
+        {{hash=af91f8e2da7bac2ca95d2fce1ddc5604}{%
+           family={Ghumman},
+           familyi={G\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {EXCEL INDIA PUBLISHERS}%
+      }
+      \strng{namehash}{950bd449754a2c3d4c42fa5e72920e60}
+      \strng{fullhash}{950bd449754a2c3d4c42fa5e72920e60}
+      \strng{bibnamehash}{950bd449754a2c3d4c42fa5e72920e60}
+      \strng{authorbibnamehash}{950bd449754a2c3d4c42fa5e72920e60}
+      \strng{authornamehash}{950bd449754a2c3d4c42fa5e72920e60}
+      \strng{authorfullhash}{950bd449754a2c3d4c42fa5e72920e60}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on COMMUNICATION, COMPUTING \& SYSTEMS(ICCCS–2014)}
+      \field{title}{Mininet as Software Defined Networking Testing Platform}
+      \field{year}{2014}
+      \field{pages}{139\bibrangedash 142}
+      \range{pages}{4}
+    \endentry
+    \entry{lldp}{online}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labeltitlesource}{title}
+      \field{title}{Link Layer Discovery Protocol}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol
+      \endverb
+    \endentry
+    \entry{onf}{online}{}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labeltitlesource}{title}
+      \field{title}{Open Networking Foundation}
+      \verb{urlraw}
+      \verb https://opennetworking.org
+      \endverb
+      \verb{url}
+      \verb https://opennetworking.org
+      \endverb
+    \endentry
+    \entry{openflow}{online}{}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labeltitlesource}{title}
+      \field{title}{OpenFlow}
+      \verb{urlraw}
+      \verb https://opennetworking.org/sdn-resources/customer-case-studies/openflow/
+      \endverb
+      \verb{url}
+      \verb https://opennetworking.org/sdn-resources/customer-case-studies/openflow/
+      \endverb
+    \endentry
+    \entry{article_paoccmisdn}{inproceedings}{useauthor=false}
+      \name{author}{6}{}{%
+        {{hash=9d63f2f04c4a6d33130df7fb20c317d8}{%
+           family={Rahman},
+           familyi={R\bibinitperiod},
+           given={M.\bibnamedelimi Z.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim Z\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=11d33872f032cf9631c29d939ed43aa1}{%
+           family={Yaakob},
+           familyi={Y\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=c4d805a8a3b36aae694eb61c4023566b}{%
+           family={Amir},
+           familyi={A\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6786acf326822e6500393eddcf359337}{%
+           family={Ahmad},
+           familyi={A\bibinitperiod},
+           given={RB},
+           giveni={R\bibinitperiod}}}%
+        {{hash=2787a950cd73429f82b709ff380bb540}{%
+           family={S.K.Yoon},
+           familyi={S\bibinitperiod}}}%
+        {{hash=046dd0a4ca97cce996b95753d1fb0b76}{%
+           family={Halim},
+           familyi={H\bibinitperiod},
+           given={A.H.\bibnamedelimi Abd},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{5267bd2848daf57107c5f9a136a777a9}
+      \strng{authornamehash}{5267bd2848daf57107c5f9a136a777a9}
+      \strng{authorfullhash}{37fab283a2bbfcdf2f5609fdaadc42ce}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeltitlesource}{title}
+      \field{title}{Performance Analysis of Congestion Control Mechanism in Software Defined Network (SDN)}
+      \field{year}{2017}
+    \endentry
+    \entry{article_ros}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=2a1263aac9a4f6f8fe904f04923729c2}{%
+           family={Romanov},
+           familyi={R\bibinitperiod},
+           given={Oleksandr\bibnamedelima I.},
+           giveni={O\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=1ad236f6beaafa0b299980a1560c959e}{%
+           family={Marinov},
+           familyi={M\bibinitperiod},
+           given={Anton\bibnamedelima I.},
+           giveni={A\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=1065c32fbad0def35fe622e828514606}{%
+           family={Saychenko},
+           familyi={S\bibinitperiod},
+           given={Ivan\bibnamedelima O.},
+           giveni={I\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=5b446d59118a55bb6e1c6ac1c40c6a89}{%
+           family={Skolets},
+           familyi={S\bibinitperiod},
+           given={Serhii\bibnamedelima S.},
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Kyiv Politechnic Institute}%
+      }
+      \strng{authorbibnamehash}{df7bb041d728074aea0f38986b6fdcad}
+      \strng{authornamehash}{df7bb041d728074aea0f38986b6fdcad}
+      \strng{authorfullhash}{06ab0788522ae34e8deeff87f56082ae}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information and Telecommunication Sciences}
+      \field{title}{RESEARCH OF SDN NETWORK PERFORMANCE PARAMETERS USING MININET NETWORK EMULATOR}
+      \field{year}{2021}
+    \endentry
+    \entry{rtt}{online}{}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labeltitlesource}{title}
+      \field{title}{Round Trip Time}
+      \verb{urlraw}
+      \verb https://developer.mozilla.org/en-US/docs/Glossary/Round_Trip_Time_(RTT)
+      \endverb
+      \verb{url}
+      \verb https://developer.mozilla.org/en-US/docs/Glossary/Round_Trip_Time_(RTT)
+      \endverb
+    \endentry
+    \entry{article_paoasdnum}{incollection}{useeditor=false}
+      \name{author}{2}{}{%
+        {{hash=3116b3d37bef5b05f5aae75267c41bf0}{%
+           family={Shivayogimath},
+           familyi={S\bibinitperiod},
+           given={Chaitra\bibnamedelima N.},
+           giveni={C\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=9e068d42de36c151ca076fe47b94fc8a}{%
+           family={Reddy},
+           familyi={R\bibinitperiod},
+           given={N.\bibnamedelimi V.\bibnamedelimi Uma},
+           giveni={N\bibinitperiod\bibinitdelim V\bibinitperiod\bibinitdelim U\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=318031cbe85c96616eaf221edeb23413}{%
+           family={Dash},
+           familyi={D\bibinitperiod},
+           given={Subhransu\bibnamedelima Sekhar},
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=efb9c13c0a90f420bdab4ee3735940a9}{%
+           family={Bhaskar},
+           familyi={B\bibinitperiod},
+           given={M.\bibnamedelimi Arun},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=67c1da6554b930251390c03e173ef6e1}{%
+           family={Panigrahi},
+           familyi={P\bibinitperiod},
+           given={Bijaya\bibnamedelima Ketan},
+           giveni={B\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=a1a1502dd46eb3a8215eb5ed56556018}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Swagatham},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{890e5901c38735f97e423ad6b504a7d3}
+      \strng{fullhash}{890e5901c38735f97e423ad6b504a7d3}
+      \strng{bibnamehash}{890e5901c38735f97e423ad6b504a7d3}
+      \strng{authorbibnamehash}{890e5901c38735f97e423ad6b504a7d3}
+      \strng{authornamehash}{890e5901c38735f97e423ad6b504a7d3}
+      \strng{authorfullhash}{890e5901c38735f97e423ad6b504a7d3}
+      \strng{editorbibnamehash}{7733a6bda67b6957fe7e57e8d72a04fc}
+      \strng{editornamehash}{7733a6bda67b6957fe7e57e8d72a04fc}
+      \strng{editorfullhash}{86b91959775535a1e1348ee567826d99}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Artificial Intelligence and Evolutionary Computations in Engineering Systems: Proceedings of ICAIECES 2015}
+      \field{title}{Performance Analysis of a Software Defined Network Using Mininet}
+      \field{year}{2016}
+      \field{pages}{391\bibrangedash 398}
+      \range{pages}{8}
+    \endentry
+    \entry{sdn}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{title}{Software-defined networking}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Software-defined_networking
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Software-defined_networking
+      \endverb
+    \endentry
+    \entry{tc_netem}{online}{}
+      \field{sortinit}{t}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labeltitlesource}{title}
+      \field{title}{tc-netem(8) — Linux manual page}
+      \verb{urlraw}
+      \verb https://man7.org/linux/man-pages/man8/tc-netem.8.html
+      \endverb
+      \verb{url}
+      \verb https://man7.org/linux/man-pages/man8/tc-netem.8.html
+      \endverb
+    \endentry
+    \entry{tc_tbf}{online}{}
+      \field{sortinit}{t}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labeltitlesource}{title}
+      \field{title}{tc-tbf(8) — Linux manual page}
+      \verb{urlraw}
+      \verb https://man7.org/linux/man-pages/man8/tc-tbf.8.html
+      \endverb
+      \verb{url}
+      \verb https://man7.org/linux/man-pages/man8/tc-tbf.8.html
+      \endverb
+    \endentry
+    \entry{bbrv1}{online}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labeltitlesource}{title}
+      \field{title}{TCP BBR Quick-Start: Building and Running TCP BBR on Google Compute Engine}
+      \verb{urlraw}
+      \verb https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md
+      \endverb
+      \verb{url}
+      \verb https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md
+      \endverb
+    \endentry
+    \entry{bbrv2}{online}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labeltitlesource}{title}
+      \field{title}{TCP BBR v2 Alpha/Preview Release}
+      \verb{urlraw}
+      \verb https://github.com/google/bbr/blob/v2alpha/README.md
+      \endverb
+      \verb{url}
+      \verb https://github.com/google/bbr/blob/v2alpha/README.md
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
