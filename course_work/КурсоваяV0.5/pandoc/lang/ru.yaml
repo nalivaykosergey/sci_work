@@ -1,0 +1,10 @@
+---
+lang: ru-RU
+polyglossia-lang:
+  name: russian
+  options:
+    - spelling=modern
+    - babelshorthands=true
+polyglossia-otherlangs:
+  name: english
+---

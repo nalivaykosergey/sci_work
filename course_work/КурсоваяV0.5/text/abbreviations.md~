@@ -1,0 +1,59 @@
+# Список используемых сокращений{.unnumbered}
+
+## Русскоязычные сокращения{.unnumbered}
+
+ОС --- Операционная система
+
+## Англоязычные сокращения{.unnumbered}
+
+AMD --- Advanced Micro Devices
+
+CBQ ---
+Class Based Queueing
+
+CLI ---
+Сommand-line interface
+
+HTB ---
+Hierarchy Token Bucket
+
+IP ---
+Internet
+
+JSON ---
+JavaScript Object Notation
+
+PID ---
+Process identity document
+
+QoS ---
+Quality of service
+
+RED ---
+Random Early Detection
+
+RTT ---
+Round-trip time
+
+SCTP ---
+Stream Control Transmission
+
+SFQ ---
+Stochastic Fairness Queueing
+
+SSD --- Solid-state drive
+
+TBF ---
+Token Bucket Filter
+
+tc ---
+traffic control
+
+TCP --- Transmission Control Protocol
+
+
+UDP ---
+User Datagram
+
+RED ---
+Random Early Detection
