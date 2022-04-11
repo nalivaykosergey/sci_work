@@ -38,7 +38,7 @@ cmd = [
 ]
 
 [monitoring]
-monitoring_time = 240
+monitoring_time = 30
 monitoring_interval = 0.1
 host_client = "h1"
 host_server = "h2"
@@ -46,5 +46,5 @@ interface = "s2-eth2"
 iperf_file_name = "iperf.json"
 iperf_flags = ""
 queue_data_file_name = "qlen.data"
-plots_dir = "plots_dir_bbr"
+plots_dir = "plots_dir_first"
 

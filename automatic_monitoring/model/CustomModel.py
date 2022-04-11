@@ -25,10 +25,9 @@ class CustomModel:
                                     "switches": file["switches"],
                                     "links": file["links"]}
 
+            self.links_config = file["links"]["cmd"]
             for i in file["devices"]:
                 self.devices_startup_configs[i] = file["devices"][i]["cmd"]
-
-            self.links_config = file["links"]["cmd"]
 
         except FileNotFoundError:
             print("Введите корректное имя файла")
@@ -64,4 +63,5 @@ class CustomModel:
     def __configure_devices(self, devices):
         for i in devices:
             command = self.devices_startup_configs["{}".format(i)]
-            i.cmd(command)
+            for j in command:
+                i.popen(j)

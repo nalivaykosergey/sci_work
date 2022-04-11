@@ -72,7 +72,7 @@ class Monitor:
               "Файл с данными: {}/{}"
               .format(self.host.name, self.server.name, self.save_dir, file_name))
 
-        self.server.cmd("iperf3 -s -D")
-        self.host.cmd("iperf3 -c {} {} -J > {}/{}"
+        self.server.popen("iperf3 -s -p 7777 -1")
+        self.host.cmd("iperf3 -c {} -p 7777 {} -J > {}/{}"
                       .format(self.server.IP(), params, self.save_dir, file_name))
         os.system("chmod 777 {}/{}".format(self.save_dir, file_name))
