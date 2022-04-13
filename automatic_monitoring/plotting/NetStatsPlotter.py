@@ -1,14 +1,3 @@
-# Класс NetStatsPlotter{#appendix1}
-
-\begin{minted}
-[
-frame=lines,
-framesep=2mm,
-baselinestretch=1.2,
-fontsize=\footnotesize,
-linenos
-]
-{python}
 import json
 import matplotlib.pyplot as plt
 
@@ -73,5 +62,3 @@ class NetStatsPlotter:
             x_stats.append(float(line[0]))
             y_stats.append(float(line[1]))
         return [x_stats, y_stats]
-\end{minted}
-

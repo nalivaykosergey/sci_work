@@ -10,3 +10,4 @@ rewrite-path: false
 
 !include text/appendix03.md
 
+!include text/appendix04.md

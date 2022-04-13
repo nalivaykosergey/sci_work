@@ -1,3 +1,14 @@
+# Класс Monitor{#appendix2}
+
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos
+]
+{python}
 from time import sleep
 from subprocess import *
 from threading import Thread
@@ -67,3 +78,6 @@ class Monitor:
         self.host.cmd("iperf3 -c {} -p 7777 {} -J > {}/{}"
                       .format(self.server.IP(), params, self.save_dir, file_name))
         os.system("chmod 777 {}/{}".format(self.save_dir, file_name))
+
+\end{minted}
+
