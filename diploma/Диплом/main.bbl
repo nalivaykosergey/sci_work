@@ -492,6 +492,18 @@
       \field{pages}{391\bibrangedash 398}
       \range{pages}{8}
     \endentry
+    \entry{sleep}{online}{}
+      \field{sortinit}{s}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{title}{sleep(3) — Linux manual page}
+      \verb{urlraw}
+      \verb https://man7.org/linux/man-pages/man3/sleep.3.html
+      \endverb
+      \verb{url}
+      \verb https://man7.org/linux/man-pages/man3/sleep.3.html
+      \endverb
+    \endentry
     \entry{sdn}{online}{}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}

@@ -76,14 +76,12 @@ chmod +x main.py
 
 ![Топология исследуемой сети](example_topo.png){ #fig:30003 width=70% }
 
-Характеристики данной сети:
-
 Предполагается, что в данной сети будут действовать следующие правила:
 
 - скорость передачи данных ограничена;
 - максимальная пропускная способность соединения h1-s1 равна 100 Мбит/с;
 - максимальная пропускная способность соединения s2-h2 равна 50 Мбит/с;
-- на коммутаторе s2 стоит дисциплина обработки очередей FIFO с максимальным количеством пакетов, равным 30;
+- на коммутаторе s2 стоит дисциплина обработки очередей FIFO с максимальным количеством пакетов, равным 60;
 - потери в сети составляют 0.001%;
 - задержка имеет нормальное распределение с математическим ожиданием в
 30 мс и с дисперсией в 7 мс.
@@ -141,8 +139,8 @@ cmd = [
 ]
 
 [monitoring]
-monitoring_time = 30
-monitoring_interval = 0.1
+monitoring_time = 60
+monitoring_interval = 0.005
 host_client = "h1"
 host_server = "h2"
 interface = "s2-eth2"
@@ -170,5 +168,208 @@ plots_dir = "plots_dir_first"
 
 Все параметры являются обязательными.
 
-Ра
+Запуск программы показан рис. [-@fig:30004].
+
+![Запуск программы](ch03_01/prog_start1.png){ #fig:30004 width=70% }
+
+Рассмотрим получившиеся графики сетевых характеристик:
+
+- На рис. [-@fig:30005] приведен график, показывающий динамику объема переданных
+данных за время моделирования.
+- На рис. [-@fig:30006] приведен график изменения значений окна перегрузки TCP Reno (CWND).
+- Динамика значений RTT (измеряется в миллисекундах) демонстрируется на рис [-@fig:30007].
+- График отклонений значений RTT приведен на рис. [-@fig:30008].
+- Динамика изменения пропускной способности показана на рис. [-@fig:30009].
+- Изменение длины очереди на интерфейсе s2-eth2 показано на рис. [-@fig:30010]
+- Изменение значения количества повторно переданных пакетов показано на рис. [-@fig:30011]
+
+![График изменения количества переданных данных с течением времени](ch03_01/bytes.png){ #fig:30005 width=70% }
+
+![График изменения значения окна перегрузки с течением времени при использовании алгоритма TCP Reno](ch03_01/cwnd.png){ #fig:30006 width=70% }
+
+![График изменения значения RTT с течением времени](ch03_01/rtt.png){ #fig:30007 width=70% }
+
+![График изменения значения вариации RTT с течением времени](ch03_01/rttvar.png){ #fig:30008 width=70% }
+
+![График изменения значения пропускной способности с течением времени](ch03_01/throughput.png){ #fig:30009 width=70% }
+
+![График изменения длины очереди на интерфейсе s2-eth2](ch03_01/queue_len.png){ #fig:30010 width=70% }
+
+![График изменения значения повторно переданных пакетов во времени](ch03_01/retransmits.png){ #fig:30011 width=70% }
+
+## Пример простой сети с несколькими хостами
+
+Сеть, в которой существуют только хост-сервер и хост-клиент встречаются довольно редко. Требуется усложнить модель сети, добавив в нее несколько хостов, которые в некоторый промежуток времени начинают передавать данные на сервер. Реализовать временные задержки довольно легко, если вспомнить про существование скриптовых файлов, которые можно запустить на хостах. Внутри данного файла будет настройка хоста, подключение к серверу и симуляция задержек во времени с помощью утилиты sleep [@sleep].
+
+Пусть у нас имеется сеть, заданная топологией, приведенной на рис.[-@fig:30012].
+
+![Топология исследуемой сети](ch03_02/example_topo.png){ #fig:30012 width=70% }
+
+Предполагается, что в данной сети будут действовать следующие правила:
+
+- скорость передачи данных ограничена;
+- максимальная пропускная способность соединения s4-s1 равна 15 Мбит/с;
+- максимальная пропускная способность соединения s4-s2 равна 10 Мбит/с;
+- максимальная пропускная способность соединения s4-s3 равна 20 Мбит/с;
+- максимальная пропускная способность соединения s4-h4 равна 20 Мбит/с;
+- на коммутаторе s4 стоит дисциплина обработки очередей FIFO с максимальным количеством пакетов, равным 45;
+- потери в сети составляют 0.001%;
+- задержка имеет нормальное распределение с математическим ожиданием в
+10 мс и с дисперсией в 3 мс.
+- в сети работает алгоритм для работы с перегрузками TCP Reno.
+
+Предполагается, что h2 начнет передавать данные на сервер через 10 секунд после старта сети и время передачи равняется 20 секундам, а h3 начнет передавать данные через 20 секунд с таким же временем передачи. В данной сети коммутаторы s1, s2, s3 существуют лишь для технической реализации сетевых задержек, потерь и ограничения скорости передачи данных.
+
+Опишем данные характеристики в конфигурационном файле.
+
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos
+]
+{kconfig}
+'''
+# device settings
+[devices]
+    [devices.h1]
+        name = "h1"
+        ip = "10.0.0.1"
+        cmd = [
+            "sysctl -w net.ipv4.tcp_congestion_control=reno"
+        ]
+    [devices.h2]
+        name = "h2"
+        ip = "10.0.0.2"
+        cmd = [
+            "./config/host_configs/h2.sh"
+        ]
+    [devices.h3]
+        name = "h3"
+        ip = "10.0.0.3"
+        cmd = [
+            "./config/host_configs/h3.sh"
+        ]
+    [devices.h4]
+        name = "h4"
+        ip = "10.0.0.4"
+        cmd = [
+            "iperf3 -s -p 7778 -1",
+            "iperf3 -s -p 7779 -1",
+        ]
+
+
+# switch settings
+[switches]
+    [switches.s1]
+        name = "s1"
+    [switches.s2]
+        name = "s2"
+    [switches.s3]
+        name = "s3"
+    [switches.s4]
+        name = "s4"
+
+
+# link settings
+[links]
+pairs = [
+    ["h1", "s1"],
+    ["h2", "s2"],
+    ["h3", "s3"],
+    ["s1", "s4"],
+    ["s2", "s4"],
+    ["s3", "s4"],
+    ["s4", "h4"]
+]
+cmd = [
+    "tc qdisc replace dev s4-eth4 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
+    "tc qdisc replace dev s4-eth1 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
+    "tc qdisc replace dev s4-eth2 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
+    "tc qdisc replace dev s4-eth3 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
+    "tc qdisc add dev s4-eth4 parent 10: handle 15: pfifo limit 45",
+
+    "tc qdisc replace dev s1-eth2 root handle 10: tbf rate 15mbit burst 7500 limit 22500",
+    "tc qdisc replace dev s2-eth2 root handle 10: tbf rate 10mbit burst 5000 limit 15000",
+    "tc qdisc replace dev s3-eth2 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
+    
+    "tc qdisc replace dev s1-eth1 root handle 10: tbf rate 15mbit burst 7500 limit 22500",
+    "tc qdisc replace dev s2-eth1 root handle 10: tbf rate 10mbit burst 5000 limit 15000",
+    "tc qdisc replace dev s3-eth1 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
+    
+
+    "tc qdisc add dev s1-eth2 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+    "tc qdisc add dev s2-eth2 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+    "tc qdisc add dev s3-eth2 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+
+    "tc qdisc add dev s1-eth1 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+    "tc qdisc add dev s2-eth1 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+    "tc qdisc add dev s3-eth1 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal"
+    
+]
+
+[monitoring]
+monitoring_time = 60
+monitoring_interval = 0.05
+host_client = "h1"
+host_server = "h4"
+interface = "s4-eth4"
+iperf_file_name = "iperf.json"
+iperf_flags = "-b 15mbit"
+queue_data_file_name = "qlen.data"
+plots_dir = "plots_dir_second"
+
+\end{minted}
+
+Видно, что здесь, в разделе настроек хостов, у хоста h4 запускаются 2 iperf-сервера. К ним, через скрипт-файлы, подключатся хосты h2 и h3. 
+
+Скрипт-файл для хоста h2:
+
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos
+]
+{bash}
+#!/bin/bash
+sysctl -w net.ipv4.tcp_congestion_control=reno
+sleep 10
+iperf3 -c 10.0.0.4 -p 7778 -t 20
+\end{minted}
+
+Скрипт-файл для хоста h3:
+
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos
+]
+{bash}
+#!/bin/bash
+sysctl -w net.ipv4.tcp_congestion_control=reno
+sleep 20
+iperf3 -c 10.0.0.4 -p 7779 -t 20
+\end{minted}
+
+Запустим данную сеть и рассмотрим наиболее интересующие нас графики сетевых характеристик.
+
+Динамика изменения пропускной способности показана на рис. [-@fig:30015]. Видно, что наименьшее значение пропускной способности достигалось в промежутке, когда одновременно все хосты передавали данные на сервер.
+
+![График изменения значения пропускной способности с течением времени](ch03_02/throughput.png){ #fig:30015 width=70% }
+
+На рис. [-@fig:30013] приведен график изменения значений окна перегрузки TCP Reno (CWND). На графике видно, что наибольшее значение CWND достигается только тогда, когда 1 хост передает данные на сервер, а все остальные молчат.
+
+![График изменения значения окна перегрузки с течением времени при использовании алгоритма TCP Reno](ch03_02/cwnd.png){ #fig:30013 width=70% }
+
+Динамика значений RTT демонстрируется на рис [-@fig:30014]. Видно, RTT увеличивается пропорционально росту окна перегрузки.
+
+![График изменения значения RTT с течением времени](ch03_02/rtt.png){ #fig:30014 width=70% }
 

@@ -55,30 +55,35 @@ cmd = [
     "tc qdisc replace dev s4-eth1 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
     "tc qdisc replace dev s4-eth2 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
     "tc qdisc replace dev s4-eth3 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
-    "tc qdisc add dev s4-eth4 parent 10: handle 15: pfifo limit 30",
+    "tc qdisc add dev s4-eth4 parent 10: handle 15: pfifo limit 45",
 
     "tc qdisc replace dev s1-eth2 root handle 10: tbf rate 15mbit burst 7500 limit 22500",
     "tc qdisc replace dev s2-eth2 root handle 10: tbf rate 10mbit burst 5000 limit 15000",
-    "tc qdisc replace dev s3-eth2 root handle 10: tbf rate 7mbit burst 3500 limit 10500",
+    "tc qdisc replace dev s3-eth2 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
+    
+    "tc qdisc replace dev s1-eth1 root handle 10: tbf rate 15mbit burst 7500 limit 22500",
+    "tc qdisc replace dev s2-eth1 root handle 10: tbf rate 10mbit burst 5000 limit 15000",
+    "tc qdisc replace dev s3-eth1 root handle 10: tbf rate 20mbit burst 10000 limit 30000",
+    
 
-    "tc qdisc add dev s1-eth2 parent 10: handle 20: netem loss 0.001% delay 30ms 5ms distribution normal",
-    "tc qdisc add dev s2-eth2 parent 10: handle 20: netem loss 0.001% delay 30ms 5ms distribution normal",
-    "tc qdisc add dev s3-eth2 parent 10: handle 20: netem loss 0.001% delay 30ms 5ms distribution normal",
+    "tc qdisc add dev s1-eth2 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+    "tc qdisc add dev s2-eth2 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+    "tc qdisc add dev s3-eth2 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
 
-    "tc qdisc replace dev s1-eth1 root handle 10: netem loss 0.001% delay 30ms 5ms distribution normal",
-    "tc qdisc add dev s2-eth1 root handle 10: netem loss 0.001% delay 30ms 5ms distribution normal",
-    "tc qdisc add dev s3-eth1 root handle 10: netem loss 0.001% delay 30ms 5ms distribution normal"
+    "tc qdisc add dev s1-eth1 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+    "tc qdisc add dev s2-eth1 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal",
+    "tc qdisc add dev s3-eth1 parent 10: handle 20: netem loss 0.001% delay 10ms 3ms distribution normal"
     
 ]
 
 [monitoring]
-monitoring_time = 30
-monitoring_interval = 0.1
+monitoring_time = 60
+monitoring_interval = 0.05
 host_client = "h1"
 host_server = "h4"
 interface = "s4-eth4"
 iperf_file_name = "iperf.json"
-iperf_flags = "-i 0.5 -b 15mbit"
+iperf_flags = "-b 15mbit"
 queue_data_file_name = "qlen.data"
 plots_dir = "plots_dir_second"
 
