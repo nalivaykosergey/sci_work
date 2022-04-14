@@ -1,5 +1,7 @@
 # Класс CustomTopology{#appendix3}
 
+Данный класс является описанием топологии сети. Он анализирует файл конфигурации и на его основе создает сетевые элементы.
+
 \begin{minted}
 [
 frame=lines,
@@ -13,7 +15,9 @@ from mininet.topo import Topo
 
 
 class CustomTopology(Topo):
-
+    
+    # Считывание конфигурационного файла и 
+    # наполнение топологии сетевыми элементами
     def __init__(self, config, **opts):
         super(CustomTopology, self).__init__(**opts)
 

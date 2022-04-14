@@ -1,5 +1,7 @@
 # Класс CustomModel{#appendix4}
 
+Класс **CustomModel** является основным во всей иерархии классов программы. Он включает в себя классы CustomTopology, Monitor и NetStatsPlotter для создания виртуальной сети, мониторинга ее сетевых характеристик и построения графиков данных сетевых характеристик.
+
 \begin{minted}
 [
 frame=lines,
@@ -28,6 +30,7 @@ class CustomModel:
         self.links_config = []
         self.monitoring_config = None
 
+    # Конфигурация сетевых элементов
     def configure_model(self, config_file):
         try:
             file = toml.load(config_file)
@@ -43,6 +46,7 @@ class CustomModel:
         except FileNotFoundError:
             print("Введите корректное имя файла")
 
+    # Симуляция модели
     def simulation(self):
         topology = CustomTopology(self.topology_config)
         net = Mininet(topo=topology, host=CPULimitedHost, link=TCLink)
@@ -67,10 +71,12 @@ class CustomModel:
         finally:
             net.stop()
 
+    # Настройка соединений между сетевыми элементами
     def __configure_links(self):
         for i in self.links_config:
             os.system(i)
 
+    # Настройка хостов
     def __configure_devices(self, devices):
         for i in devices:
             command = self.devices_startup_configs["{}".format(i)]

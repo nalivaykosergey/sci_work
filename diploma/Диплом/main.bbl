@@ -169,6 +169,18 @@
       \verb https://www.rfc-editor.org/rfc/rfc5166.txt
       \endverb
     \endentry
+    \entry{gns3}{online}{}
+      \field{sortinit}{g}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labeltitlesource}{title}
+      \field{title}{gns3}
+      \verb{urlraw}
+      \verb https://www.gns3.com
+      \endverb
+      \verb{url}
+      \verb https://www.gns3.com
+      \endverb
+    \endentry
     \entry{article_iosctfim}{article}{useauthor=false}
       \name{author}{4}{}{%
         {{hash=9dafbfbb8ffff5191a6198b1a3a83476}{%
@@ -201,6 +213,42 @@
       \field{journaltitle}{2014 Asia-Pacific Conference on Computer Aided System Engineering (APCASE)}
       \field{title}{Implementation of simplified custom topology framework in Mininet}
       \field{year}{2014}
+    \endentry
+    \entry{iot}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=66c85caeebe46d6ac94af4a591077bc5}{%
+           family={Shafique},
+           familyi={S\bibinitperiod},
+           given={Kinza},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5f72fb7e8e6c4414dfba656ef29b5747}{%
+           family={Khawaja},
+           familyi={K\bibinitperiod},
+           given={Bilal\bibnamedelima A.},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=02370f65466d9da089c12daa51ba3b7a}{%
+           family={Farah\bibnamedelima Sabir},
+           familyi={F\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={Sameer\bibnamedelima Qazi},
+           giveni={S\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
+        {{hash=4be189553fa012d1c2874f8921e2c11c}{%
+           family={Mustaqim},
+           familyi={M\bibinitperiod},
+           given={Muhammad},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{authorbibnamehash}{6ac69981388d38368cf0c16bb11f53c7}
+      \strng{authornamehash}{6ac69981388d38368cf0c16bb11f53c7}
+      \strng{authorfullhash}{0c189fc922208a8f7602a772e0d4184c}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information and Telecommunication Sciences}
+      \field{title}{Internet of Things (IoT) for Next-Generation Smart Systems: A Review of Current Challenges, Future Trends and Prospects for Emerging 5G-IoT Scenarios}
+      \field{year}{2020}
     \endentry
     \entry{ip}{online}{}
       \field{sortinit}{i}
@@ -323,6 +371,18 @@
       \verb http://mininet.org/api/annotated.html
       \endverb
     \endentry
+    \entry{ns3}{online}{}
+      \field{sortinit}{n}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labeltitlesource}{title}
+      \field{title}{ns-3 - Network Simulator}
+      \verb{urlraw}
+      \verb https://www.nsnam.org
+      \endverb
+      \verb{url}
+      \verb https://www.nsnam.org
+      \endverb
+    \endentry
     \entry{onf}{online}{}
       \field{sortinit}{O}
       \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
@@ -386,6 +446,18 @@
       \field{labeltitlesource}{title}
       \field{title}{Performance Analysis of Congestion Control Mechanism in Software Defined Network (SDN)}
       \field{year}{2017}
+    \endentry
+    \entry{pip}{online}{}
+      \field{sortinit}{p}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeltitlesource}{title}
+      \field{title}{pip}
+      \verb{urlraw}
+      \verb https://pypi.org/project/pip/
+      \endverb
+      \verb{url}
+      \verb https://pypi.org/project/pip/
+      \endverb
     \endentry
     \entry{article_ros}{article}{useauthor=false}
       \name{author}{4}{}{%

@@ -1,5 +1,7 @@
 # Класс NetStatsPlotter{#appendix1}
 
+Данный класс представляет собой набор средств для анализа файла с сырыми данными сетевых характеристик и построения графиков данных сетевых характеристик. 
+
 \begin{minted}
 [
 frame=lines,
@@ -17,6 +19,7 @@ class NetStatsPlotter:
         self.save_folder = save_folder
         self.plot_format = plot_format
 
+    # Построение графиков сетевых характеристик из iperf
     def plot_net_stats(self, net_data_file):
         x_stats, y_stats = self.__parse_net_stats_file(net_data_file)
         for i in y_stats:
@@ -29,6 +32,7 @@ class NetStatsPlotter:
             plt.savefig("{}/{}.{}".format(self.save_folder, i, self.plot_format))
             plt.clf()
 
+    # Построение графика изменения длины очереди
     def plot_queue_len(self, qlen_data_file):
         x_stats, y_stats = self.__parse_queue_len_data_file(qlen_data_file)
         plt.plot(x_stats, y_stats, 'k', linewidth=1)
@@ -39,6 +43,7 @@ class NetStatsPlotter:
         plt.title("Размер очереди в течении времени")
         plt.savefig("{}/queue_len.{}".format(self.save_folder, self.plot_format))
 
+    # Анализ сырого файла, полученного от утилиты iperf
     def __parse_net_stats_file(self, net_data_file):
         net_data = open(net_data_file, "r")
         raw_data = json.load(net_data)
@@ -64,6 +69,7 @@ class NetStatsPlotter:
             y["throughput"][0].append(tmp_data["bits_per_second"] / 1000000)
         return [x, y]
 
+    # Анализ сырого файла длины очереди
     def __parse_queue_len_data_file(self, qlen_data_file):
         qlen_data = open(qlen_data_file, "r")
         x_stats = []

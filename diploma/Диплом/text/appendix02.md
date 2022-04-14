@@ -1,5 +1,7 @@
 # Класс Monitor{#appendix2}
 
+Данный класс представляет собой средство мониторинга сетевых характеристик. Метод **net_monitoring** запускает методы **__queue_len_monitoring** и **__iperf_monitoring**. **__queue_len_monitoring** следит за размером очереди qdisc заданного интерфейса и записывает данные в файл. **__iperf_monitoring** запускает программу iperf на сервере и клиенте и ведет сбор статистики в заданный файл json. 
+
 \begin{minted}
 [
 frame=lines,
@@ -29,6 +31,7 @@ class Monitor:
         self.server = server
         self.iface = iface
 
+    # Запуск системы мониторинга
     def net_monitoring(self, iperf_file, iperf_commands,
                        qlen_file, qlen_mon_time, qlen_mon_interval):
         th1 = Thread(target=self.__iperf_monitoring,
@@ -45,6 +48,7 @@ class Monitor:
         plotter.plot_queue_len(os.path.join(self.save_dir, qlen_file))
         print("Графики построены и находятся в директории {}.".format(self.save_dir))
 
+    # Мониторинг очереди сетевого интерфейса
     def __queue_len_monitoring(self, time=1, interval_sec_=0.1, fname="qlen.dat"):
         print("Начало мониторинга сети на интерфейсе {}. Продолжительность мониторинга: "
               "{} сек. с интервалом {}".format(self.iface, time, interval_sec_))
@@ -69,6 +73,7 @@ class Monitor:
         os.system("chmod 777 {}/{}".format(self.save_dir, fname))
         file.close()
 
+    # Запуск утилиты iperf
     def __iperf_monitoring(self, file_name, params):
         print("Начало работы iperf. Хост: {}, сервер: {}. "
               "Файл с данными: {}/{}"
