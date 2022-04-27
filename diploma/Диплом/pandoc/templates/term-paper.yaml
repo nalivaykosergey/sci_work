@@ -17,7 +17,7 @@ centering-section: false
 oneside: true
 geometry:
   - left=30mm
-  - right=10mm
+  - right=15mm
   - top=20mm
   - bottom=20mm
   - nohead

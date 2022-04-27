@@ -4,7 +4,7 @@
         name = "h1"
         ip = "10.0.0.1"
         cmd = [
-            "sysctl -w net.ipv4.tcp_congestion_control=reno"
+            "sysctl -w net.ipv4.tcp_congestion_control=bbr"
         ]
     [devices.h2]
         name = "h2"
@@ -78,7 +78,7 @@ cmd = [
 
 [monitoring]
 monitoring_time = 60
-monitoring_interval = 0.05
+monitoring_interval = 0.1
 host_client = "h1"
 host_server = "h4"
 interface = "s4-eth4"

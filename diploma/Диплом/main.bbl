@@ -710,6 +710,33 @@
       \verb https://toml.io/en/
       \endverb
     \endentry
+    \entry{my_conf_work}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3774981fcf971a57fa0b3957abe0a04b}{%
+           family={Наливайко},
+           familyi={Н\bibinitperiod},
+           given={С.\bibnamedelimi М.},
+           giveni={С\bibinitperiod\bibinitdelim М\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Москва, РУДН}%
+      }
+      \strng{namehash}{3774981fcf971a57fa0b3957abe0a04b}
+      \strng{fullhash}{3774981fcf971a57fa0b3957abe0a04b}
+      \strng{bibnamehash}{3774981fcf971a57fa0b3957abe0a04b}
+      \strng{authorbibnamehash}{3774981fcf971a57fa0b3957abe0a04b}
+      \strng{authornamehash}{3774981fcf971a57fa0b3957abe0a04b}
+      \strng{authorfullhash}{3774981fcf971a57fa0b3957abe0a04b}
+      \field{sortinit}{Н}
+      \field{sortinithash}{38afed4b2dd7a2a56c8bd22996f23af0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Информационно-телекоммуникационные технологии и математическое моделирование высокотехнологичных систем: материалы Всероссийской конференции с международным участием}
+      \field{title}{Автоматизация процессов моделирования и измерения сетевых характеристик в Mininet}
+      \field{year}{2022}
+      \field{pages}{397\bibrangedash 403}
+      \range{pages}{7}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
