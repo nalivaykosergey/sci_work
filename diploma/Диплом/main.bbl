@@ -60,6 +60,48 @@
       \field{title}{A Performance Evaluation of TCP BBRv2 Alpha}
       \field{year}{2020}
     \endentry
+    \entry{bbrv1}{article}{useauthor=false}
+      \name{author}{5}{}{%
+        {{hash=057724ca9fc8c7b17fa850624808c3e5}{%
+           family={Cardwell},
+           familyi={C\bibinitperiod},
+           given={Neal},
+           giveni={N\bibinitperiod}}}%
+        {{hash=599f0d58fcaf8c51ecb30b8162920904}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Yuchung},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=24aba1ac5e54adfd53fe7d5f34e8f38b}{%
+           family={Gunn},
+           familyi={G\bibinitperiod},
+           given={C.\bibnamedelimi Stephen},
+           giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=21f38753a5a398a2991dfef01a090aa5}{%
+           family={Yeganeh},
+           familyi={Y\bibinitperiod},
+           given={Soheil\bibnamedelima Hassas},
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=2191d887ae31ebf1ef43a77dc25834c4}{%
+           family={Jacobson},
+           familyi={J\bibinitperiod},
+           given={Van},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{37ad10b692d43818201e73a05d704696}
+      \strng{authornamehash}{37ad10b692d43818201e73a05d704696}
+      \strng{authorfullhash}{9880a9308748de9e3e2b314c00043987}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM Queue}
+      \field{title}{BBR: Congestion-Based Congestion Control}
+      \field{year}{2016}
+      \field{pages}{20\bibrangedash 53}
+      \range{pages}{34}
+      \field{volume}{14}
+      \range{volume}{1}
+    \endentry
     \entry{cli}{online}{}
       \field{sortinit}{C}
       \field{sortinithash}{4d103a86280481745c9c897c925753c0}
@@ -672,18 +714,6 @@
       \endverb
       \verb{url}
       \verb https://man7.org/linux/man-pages/man8/tc.8.html
-      \endverb
-    \endentry
-    \entry{bbrv1}{online}{}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
-      \field{labeltitlesource}{title}
-      \field{title}{TCP BBR Quick-Start: Building and Running TCP BBR on Google Compute Engine}
-      \verb{urlraw}
-      \verb https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md
-      \endverb
-      \verb{url}
-      \verb https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md
       \endverb
     \endentry
     \entry{bbrv2}{online}{}
