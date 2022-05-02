@@ -1,9 +1,0 @@
----
-listings: false
-header-includes:
-  - \usepackage{minted}
-  - \setminted{breaklines}
-  - \makeatletter
-  - \let\listoflistings\@undefined
-  - \makeatother
----

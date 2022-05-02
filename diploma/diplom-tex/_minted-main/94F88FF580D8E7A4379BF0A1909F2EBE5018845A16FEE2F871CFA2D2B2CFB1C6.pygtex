@@ -1,0 +1,83 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{[}
+\PYG{n}{frame}\PYG{o}{=}\PYG{n}{lines}\PYG{p}{,}
+\PYG{n}{framesep}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{n}{mm}\PYG{p}{,}
+\PYG{n}{baselinestretch}\PYG{o}{=}\PYG{l+m+mf}{1.2}\PYG{p}{,}
+\PYG{n}{fontsize}\PYG{o}{=}\PYGZbs{}\PYG{n}{footnotesize}\PYG{p}{,}
+\PYG{n}{linenos}
+\PYG{p}{]}
+\PYG{p}{\PYGZob{}}\PYG{n}{python}\PYG{p}{\PYGZcb{}}
+\PYG{k+kn}{from} \PYG{n+nn}{time} \PYG{k+kn}{import} \PYG{n}{sleep}
+\PYG{k+kn}{from} \PYG{n+nn}{subprocess} \PYG{k+kn}{import} \PYG{o}{*}
+\PYG{k+kn}{from} \PYG{n+nn}{threading} \PYG{k+kn}{import} \PYG{n}{Thread}
+\PYG{k+kn}{import} \PYG{n+nn}{re}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+
+\PYG{k+kn}{from} \PYG{n+nn}{plotting.NetStatsPlotter} \PYG{k+kn}{import} \PYG{n}{NetStatsPlotter}
+
+\PYG{k}{class} \PYG{n+nc}{Monitor}\PYG{p}{:}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{host}\PYG{p}{,} \PYG{n}{server}\PYG{p}{,} \PYG{n}{iface}\PYG{p}{,} \PYG{n}{save\PYGZus{}dir}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}monitoring\PYGZus{}plots\PYGZdq{}}\PYG{p}{):}
+
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir} \PYG{o}{=} \PYG{n}{save\PYGZus{}dir}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{exists}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{):}
+            \PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{)}
+            \PYG{n}{os}\PYG{o}{.}\PYG{n}{system}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}chmod 777 }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{save\PYGZus{}dir}\PYG{p}{))}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{host} \PYG{o}{=} \PYG{n}{host}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{server} \PYG{o}{=} \PYG{n}{server}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{iface} \PYG{o}{=} \PYG{n}{iface}
+
+    \PYG{c+c1}{\PYGZsh{} Запуск системы мониторинга}
+    \PYG{k}{def} \PYG{n+nf}{net\PYGZus{}monitoring}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{iperf\PYGZus{}file}\PYG{p}{,} \PYG{n}{iperf\PYGZus{}commands}\PYG{p}{,}
+                       \PYG{n}{qlen\PYGZus{}file}\PYG{p}{,} \PYG{n}{qlen\PYGZus{}mon\PYGZus{}time}\PYG{p}{,} \PYG{n}{qlen\PYGZus{}mon\PYGZus{}interval}\PYG{p}{):}
+        \PYG{n}{th1} \PYG{o}{=} \PYG{n}{Thread}\PYG{p}{(}\PYG{n}{target}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}\PYGZus{}iperf\PYGZus{}monitoring}\PYG{p}{,}
+                     \PYG{n}{args}\PYG{o}{=}\PYG{p}{(}\PYG{n}{iperf\PYGZus{}file}\PYG{p}{,} \PYG{n}{iperf\PYGZus{}commands}\PYG{p}{,))}
+        \PYG{n}{th2} \PYG{o}{=} \PYG{n}{Thread}\PYG{p}{(}\PYG{n}{target}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}\PYGZus{}queue\PYGZus{}len\PYGZus{}monitoring}\PYG{p}{,}
+                     \PYG{n}{args}\PYG{o}{=}\PYG{p}{(}\PYG{n}{qlen\PYGZus{}mon\PYGZus{}time}\PYG{p}{,} \PYG{n}{qlen\PYGZus{}mon\PYGZus{}interval}\PYG{p}{,} \PYG{n}{qlen\PYGZus{}file}\PYG{p}{))}
+        \PYG{n}{th1}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+        \PYG{n}{th2}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+        \PYG{n}{th1}\PYG{o}{.}\PYG{n}{join}\PYG{p}{()}
+        \PYG{n}{th2}\PYG{o}{.}\PYG{n}{join}\PYG{p}{()}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Мониторинг окончен. Строим графики.\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{plotter} \PYG{o}{=} \PYG{n}{NetStatsPlotter}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}png\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{plotter}\PYG{o}{.}\PYG{n}{plot\PYGZus{}net\PYGZus{}stats}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{,} \PYG{n}{iperf\PYGZus{}file}\PYG{p}{))}
+        \PYG{n}{plotter}\PYG{o}{.}\PYG{n}{plot\PYGZus{}queue\PYGZus{}len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{,} \PYG{n}{qlen\PYGZus{}file}\PYG{p}{))}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Графики построены и находятся в директории }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{.\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{))}
+
+    \PYG{c+c1}{\PYGZsh{} Мониторинг очереди сетевого интерфейса}
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}queue\PYGZus{}len\PYGZus{}monitoring}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{time}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{interval\PYGZus{}sec\PYGZus{}}\PYG{o}{=}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{n}{fname}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}qlen.dat\PYGZdq{}}\PYG{p}{):}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Начало мониторинга сети на интерфейсе }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{. Продолжительность мониторинга: \PYGZdq{}}
+              \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{ сек. с интервалом }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{iface}\PYG{p}{,} \PYG{n}{time}\PYG{p}{,} \PYG{n}{interval\PYGZus{}sec\PYGZus{}}\PYG{p}{))}
+        \PYG{n}{current\PYGZus{}time} \PYG{o}{=} \PYG{l+m+mi}{0}
+        \PYG{c+c1}{\PYGZsh{} Регуляроное выражение для поиска данных с tc}
+        \PYG{n}{pat\PYGZus{}queued} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}backlog\PYGZbs{}s[\PYGZca{}\PYGZbs{}s]+\PYGZbs{}s([\PYGZbs{}d]+)p\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{cmd} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}tc \PYGZhy{}s qdisc show dev }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{iface}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Открытие файла мониторинга на запись}
+        \PYG{n}{file} \PYG{o}{=} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{/}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{,} \PYG{n}{fname}\PYG{p}{),} \PYG{l+s+s1}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Цикл, в котором происходит мониторинг до прерывания}
+        \PYG{k}{while} \PYG{n}{current\PYGZus{}time} \PYG{o}{\PYGZlt{}} \PYG{n}{time}\PYG{p}{:}
+            \PYG{c+c1}{\PYGZsh{} Вызов команды в tc в терминале и поиск значения длины очереди, количества отброшенных пакетов}
+            \PYG{n}{p} \PYG{o}{=} \PYG{n}{Popen}\PYG{p}{(}\PYG{n}{cmd}\PYG{p}{,} \PYG{n}{shell}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{stdout}\PYG{o}{=}\PYG{n}{PIPE}\PYG{p}{)}
+            \PYG{n}{output} \PYG{o}{=} \PYG{n}{p}\PYG{o}{.}\PYG{n}{stdout}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}utf\PYGZhy{}8\PYGZsq{}}\PYG{p}{)}
+            \PYG{n}{matches\PYGZus{}queue} \PYG{o}{=} \PYG{n}{pat\PYGZus{}queued}\PYG{o}{.}\PYG{n}{findall}\PYG{p}{(}\PYG{n}{output}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{matches\PYGZus{}queue}\PYG{p}{:}
+                \PYG{n}{t} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZpc{}f}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{current\PYGZus{}time}
+                \PYG{n}{current\PYGZus{}time} \PYG{o}{+=} \PYG{n}{interval\PYGZus{}sec\PYGZus{}}
+                \PYG{n}{file}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{t} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}} \PYG{o}{+} \PYG{n}{matches\PYGZus{}queue}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+            \PYG{n}{sleep}\PYG{p}{(}\PYG{n}{interval\PYGZus{}sec\PYGZus{}}\PYG{p}{)}
+            \PYG{n}{current\PYGZus{}time} \PYG{o}{+=} \PYG{n}{interval\PYGZus{}sec\PYGZus{}}
+        \PYG{n}{os}\PYG{o}{.}\PYG{n}{system}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}chmod 777 }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{/}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{,} \PYG{n}{fname}\PYG{p}{))}
+        \PYG{n}{file}\PYG{o}{.}\PYG{n}{close}\PYG{p}{()}
+
+    \PYG{c+c1}{\PYGZsh{} Запуск утилиты iperf}
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}iperf\PYGZus{}monitoring}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{file\PYGZus{}name}\PYG{p}{,} \PYG{n}{params}\PYG{p}{):}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Начало работы iperf. Хост: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{, сервер: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{. \PYGZdq{}}
+              \PYG{l+s+s2}{\PYGZdq{}Файл с данными: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{/}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+              \PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{host}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{server}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{,} \PYG{n}{file\PYGZus{}name}\PYG{p}{))}
+
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{server}\PYG{o}{.}\PYG{n}{popen}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}iperf3 \PYGZhy{}s \PYGZhy{}p 7777 \PYGZhy{}1\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{host}\PYG{o}{.}\PYG{n}{cmd}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}iperf3 \PYGZhy{}c }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{ \PYGZhy{}p 7777 }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{ \PYGZhy{}J \PYGZgt{} }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{/}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+                      \PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{server}\PYG{o}{.}\PYG{n}{IP}\PYG{p}{(),} \PYG{n}{params}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{,} \PYG{n}{file\PYGZus{}name}\PYG{p}{))}
+        \PYG{n}{os}\PYG{o}{.}\PYG{n}{system}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}chmod 777 }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{/}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{save\PYGZus{}dir}\PYG{p}{,} \PYG{n}{file\PYGZus{}name}\PYG{p}{))}
+
+\end{Verbatim}

@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{mininet.topo} \PYG{k+kn}{import} \PYG{n}{Topo}
+
+
+\PYG{k}{class} \PYG{n+nc}{CustomTopology}\PYG{p}{(}\PYG{n}{Topo}\PYG{p}{):}
+
+    \PYG{c+c1}{\PYGZsh{} Считывание конфигурационного файла и}
+    \PYG{c+c1}{\PYGZsh{} наполнение топологии сетевыми элементами}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{config}\PYG{p}{,} \PYG{o}{**}\PYG{n}{opts}\PYG{p}{):}
+        \PYG{n+nb}{super}\PYG{p}{(}\PYG{n}{CustomTopology}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{o}{**}\PYG{n}{opts}\PYG{p}{)}
+
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}devices\PYGZdq{}}\PYG{p}{]:}
+            \PYG{n}{current} \PYG{o}{=} \PYG{n}{config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}devices\PYGZdq{}}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{addHost}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{n}{current}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{],} \PYG{n}{ip}\PYG{o}{=}\PYG{n}{current}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}ip\PYGZdq{}}\PYG{p}{])}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}switches\PYGZdq{}}\PYG{p}{]:}
+            \PYG{n}{current} \PYG{o}{=} \PYG{n}{config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}switches\PYGZdq{}}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{addSwitch}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{n}{current}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{])}
+
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}links\PYGZdq{}}\PYG{p}{][}\PYG{l+s+s2}{\PYGZdq{}pairs\PYGZdq{}}\PYG{p}{]:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{addLink}\PYG{p}{(}\PYG{n}{i}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{i}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])}
+
+\end{Verbatim}

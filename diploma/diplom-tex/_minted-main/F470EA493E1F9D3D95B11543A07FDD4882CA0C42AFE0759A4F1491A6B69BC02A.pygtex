@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+sysctl \PYGZhy{}w net.ipv4.tcp\PYGZus{}congestion\PYGZus{}control\PYG{o}{=}bbr
+sleep \PYG{l+m}{10}
+iperf3 \PYGZhy{}c \PYG{l+m}{10}.0.0.4 \PYGZhy{}p \PYG{l+m}{7778} \PYGZhy{}t \PYG{l+m}{20}
+\end{Verbatim}

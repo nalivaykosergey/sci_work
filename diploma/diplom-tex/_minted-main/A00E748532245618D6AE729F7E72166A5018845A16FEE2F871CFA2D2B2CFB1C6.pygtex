@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+s1}{\PYGZsh{}!/usr/bin/python3.8}
+
+\PYG{l+s+s1}{import argparse}
+\PYG{l+s+s1}{from model.CustomModel import CustomModel}
+
+\PYG{l+s+s1}{if \PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{} == \PYGZsq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZsq{}:}
+\PYG{l+s+s1}{    parser = argparse.ArgumentParser()}
+\PYG{l+s+s1}{    h = \PYGZdq{}Файл конфигурации\PYGZdq{}}
+\PYG{l+s+s1}{    parser.add\PYGZus{}argument(\PYGZsq{}\PYGZhy{}c\PYGZsq{}, \PYGZsq{}\PYGZhy{}\PYGZhy{}config\PYGZsq{}, type=str, help=h)}
+\PYG{l+s+s1}{    args = parser.parse\PYGZus{}args()}
+\PYG{l+s+s1}{    if args.config:}
+\PYG{l+s+s1}{        top = CustomModel()}
+\PYG{l+s+s1}{        top.configure\PYGZus{}model(args.config)}
+\PYG{l+s+s1}{        top.simulation()}
+\PYG{l+s+s1}{    else:}
+\PYG{l+s+s1}{        print(\PYGZdq{}Введите название конфиг\PYGZhy{}файла\PYGZdq{})}
+
+\end{Verbatim}

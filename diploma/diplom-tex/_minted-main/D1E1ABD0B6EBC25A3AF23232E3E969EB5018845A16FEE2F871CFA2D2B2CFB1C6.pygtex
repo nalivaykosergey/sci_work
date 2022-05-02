@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/usr/bin/python3.8}
+
+\PYG{k+kn}{import} \PYG{n+nn}{argparse}
+\PYG{k+kn}{from} \PYG{n+nn}{model.CustomModel} \PYG{k+kn}{import} \PYG{n}{CustomModel}
+
+\PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZsq{}}\PYG{p}{:}
+    \PYG{n}{parser} \PYG{o}{=} \PYG{n}{argparse}\PYG{o}{.}\PYG{n}{ArgumentParser}\PYG{p}{()}
+    \PYG{n}{h} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Файл конфигурации\PYGZdq{}}
+    \PYG{n}{parser}\PYG{o}{.}\PYG{n}{add\PYGZus{}argument}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}c\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZhy{}config\PYGZsq{}}\PYG{p}{,} \PYG{n+nb}{type}\PYG{o}{=}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{help}\PYG{o}{=}\PYG{n}{h}\PYG{p}{)}
+    \PYG{n}{args} \PYG{o}{=} \PYG{n}{parser}\PYG{o}{.}\PYG{n}{parse\PYGZus{}args}\PYG{p}{()}
+    \PYG{k}{if} \PYG{n}{args}\PYG{o}{.}\PYG{n}{config}\PYG{p}{:}
+        \PYG{n}{top} \PYG{o}{=} \PYG{n}{CustomModel}\PYG{p}{()}
+        \PYG{n}{top}\PYG{o}{.}\PYG{n}{configure\PYGZus{}model}\PYG{p}{(}\PYG{n}{args}\PYG{o}{.}\PYG{n}{config}\PYG{p}{)}
+        \PYG{n}{top}\PYG{o}{.}\PYG{n}{simulation}\PYG{p}{()}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Введите название конфиг\PYGZhy{}файла\PYGZdq{}}\PYG{p}{)}
+
+\end{Verbatim}

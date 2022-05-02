@@ -1,0 +1,20 @@
+\chapter*{Список используемых сокращений}
+\addcontentsline{toc}{chapter}{Список используемых сокращений}
+
+\mbox{}
+
+%RED --- Random Early Detection
+
+ACK --- Acknowledge
+
+CWnd --- Congestion window 
+
+ECN --- Explicit Congestion Notification
+
+IETF ---  Internet Engineering Task Force
+
+RFC --- Request for Comments
+
+RTT --- Round-Trip Time 
+
+TCP --- Transmission Control Protocol 

@@ -1,0 +1,73 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} device settings}
+\PYG{p}{[}\PYG{n}{devices}\PYG{p}{]}
+    \PYG{p}{[}\PYG{n}{devices}\PYG{o}{.}\PYG{n}{h1}\PYG{p}{]}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}h1\PYGZdq{}}
+        \PYG{n}{ip} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}10.0.0.1\PYGZdq{}}
+        \PYG{n}{cmd} \PYG{o}{=} \PYG{p}{[} \PYG{l+s+s2}{\PYGZdq{}sysctl \PYGZhy{}w net.ipv4.tcp\PYGZus{}congestion\PYGZus{}control=bbr\PYGZdq{}} \PYG{p}{]}
+    \PYG{p}{[}\PYG{n}{devices}\PYG{o}{.}\PYG{n}{h2}\PYG{p}{]}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}h2\PYGZdq{}}
+        \PYG{n}{ip} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}10.0.0.2\PYGZdq{}}
+        \PYG{n}{cmd} \PYG{o}{=} \PYG{p}{[} \PYG{l+s+s2}{\PYGZdq{}./config/host\PYGZus{}configs/h2.sh\PYGZdq{}} \PYG{p}{]}
+    \PYG{p}{[}\PYG{n}{devices}\PYG{o}{.}\PYG{n}{h3}\PYG{p}{]}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}h3\PYGZdq{}}
+        \PYG{n}{ip} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}10.0.0.3\PYGZdq{}}
+        \PYG{n}{cmd} \PYG{o}{=} \PYG{p}{[} \PYG{l+s+s2}{\PYGZdq{}./config/host\PYGZus{}configs/h3.sh\PYGZdq{}} \PYG{p}{]}
+    \PYG{p}{[}\PYG{n}{devices}\PYG{o}{.}\PYG{n}{h4}\PYG{p}{]}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}h4\PYGZdq{}}
+        \PYG{n}{ip} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}10.0.0.4\PYGZdq{}}
+        \PYG{n}{cmd} \PYG{o}{=} \PYG{p}{[}
+            \PYG{l+s+s2}{\PYGZdq{}iperf3 \PYGZhy{}s \PYGZhy{}p 7778 \PYGZhy{}1\PYGZdq{}}\PYG{p}{,}
+            \PYG{l+s+s2}{\PYGZdq{}iperf3 \PYGZhy{}s \PYGZhy{}p 7779 \PYGZhy{}1\PYGZdq{}}\PYG{p}{,}
+        \PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} switch settings}
+\PYG{p}{[}\PYG{n}{switches}\PYG{p}{]}
+    \PYG{p}{[}\PYG{n}{switches}\PYG{o}{.}\PYG{n}{s1}\PYG{p}{]}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}s1\PYGZdq{}}
+    \PYG{p}{[}\PYG{n}{switches}\PYG{o}{.}\PYG{n}{s2}\PYG{p}{]}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}s2\PYGZdq{}}
+    \PYG{p}{[}\PYG{n}{switches}\PYG{o}{.}\PYG{n}{s3}\PYG{p}{]}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}s3\PYGZdq{}}
+    \PYG{p}{[}\PYG{n}{switches}\PYG{o}{.}\PYG{n}{s4}\PYG{p}{]}
+        \PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}s4\PYGZdq{}}
+\PYG{c+c1}{\PYGZsh{} link settings}
+\PYG{p}{[}\PYG{n}{links}\PYG{p}{]}
+\PYG{n}{pairs} \PYG{o}{=} \PYG{p}{[}
+    \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}h1\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}s1\PYGZdq{}}\PYG{p}{],}
+    \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}h2\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}s2\PYGZdq{}}\PYG{p}{],}
+    \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}h3\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}s3\PYGZdq{}}\PYG{p}{],}
+    \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}s1\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}s4\PYGZdq{}}\PYG{p}{],}
+    \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}s2\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}s4\PYGZdq{}}\PYG{p}{],}
+    \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}s3\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}s4\PYGZdq{}}\PYG{p}{],}
+    \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}s4\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}h4\PYGZdq{}}\PYG{p}{]}
+\PYG{p}{]}
+\PYG{n}{cmd} \PYG{o}{=} \PYG{p}{[}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s4\PYGZhy{}eth4 root handle 10: tbf rate 20mbit burst 10000 limit 30000\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s4\PYGZhy{}eth1 root handle 10: tbf rate 20mbit burst 10000 limit 30000\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s4\PYGZhy{}eth2 root handle 10: tbf rate 20mbit burst 10000 limit 30000\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s4\PYGZhy{}eth3 root handle 10: tbf rate 20mbit burst 10000 limit 30000\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s4\PYGZhy{}eth4 parent 10: handle 15: pfifo limit 45\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s1\PYGZhy{}eth2 root handle 10: tbf rate 15mbit burst 7500 limit 22500\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s2\PYGZhy{}eth2 root handle 10: tbf rate 10mbit burst 5000 limit 15000\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s3\PYGZhy{}eth2 root handle 10: tbf rate 20mbit burst 10000 limit 30000\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s1\PYGZhy{}eth1 root handle 10: tbf rate 15mbit burst 7500 limit 22500\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s2\PYGZhy{}eth1 root handle 10: tbf rate 10mbit burst 5000 limit 15000\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s3\PYGZhy{}eth1 root handle 10: tbf rate 20mbit burst 10000 limit 30000\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s1\PYGZhy{}eth2 parent 10: handle 20: netem loss 0.001}\PYG{l+s+si}{\PYGZpc{} d}\PYG{l+s+s2}{elay 10ms 3ms distribution normal\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s2\PYGZhy{}eth2 parent 10: handle 20: netem loss 0.001}\PYG{l+s+si}{\PYGZpc{} d}\PYG{l+s+s2}{elay 10ms 3ms distribution normal\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s3\PYGZhy{}eth2 parent 10: handle 20: netem loss 0.001}\PYG{l+s+si}{\PYGZpc{} d}\PYG{l+s+s2}{elay 10ms 3ms distribution normal\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s1\PYGZhy{}eth1 parent 10: handle 20: netem loss 0.001}\PYG{l+s+si}{\PYGZpc{} d}\PYG{l+s+s2}{elay 10ms 3ms distribution normal\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s2\PYGZhy{}eth1 parent 10: handle 20: netem loss 0.001}\PYG{l+s+si}{\PYGZpc{} d}\PYG{l+s+s2}{elay 10ms 3ms distribution normal\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s3\PYGZhy{}eth1 parent 10: handle 20: netem loss 0.001}\PYG{l+s+si}{\PYGZpc{} d}\PYG{l+s+s2}{elay 10ms 3ms distribution normal\PYGZdq{}}
+\PYG{p}{]}
+\PYG{p}{[}\PYG{n}{monitoring}\PYG{p}{]}
+\PYG{n}{monitoring\PYGZus{}time} \PYG{o}{=} \PYG{l+m+mi}{60}
+\PYG{n}{monitoring\PYGZus{}interval} \PYG{o}{=} \PYG{l+m+mf}{0.05}
+\PYG{n}{host\PYGZus{}client} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}h1\PYGZdq{}}
+\PYG{n}{host\PYGZus{}server} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}h4\PYGZdq{}}
+\PYG{n}{interface} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}s4\PYGZhy{}eth4\PYGZdq{}}
+\PYG{n}{iperf\PYGZus{}file\PYGZus{}name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}iperf.json\PYGZdq{}}
+\PYG{n}{iperf\PYGZus{}flags} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}b 15mbit\PYGZdq{}}
+\PYG{n}{queue\PYGZus{}data\PYGZus{}file\PYGZus{}name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}qlen.data\PYGZdq{}}
+\PYG{n}{plots\PYGZus{}dir} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}plots\PYGZus{}dir\PYGZus{}second\PYGZdq{}}
+\end{Verbatim}

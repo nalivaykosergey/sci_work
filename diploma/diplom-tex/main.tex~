@@ -1,0 +1,96 @@
+\documentclass[
+a4paper,
+%13pt,
+%fontsize=13pt
+]{report}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{setspace}
+\usepackage[fontsize=13pt]{scrextend}
+\usepackage[table,xcdraw]{xcolor}
+%\usepackage[hscale=0.78,vscale=0.8]{geometry} % margins
+\usepackage[
+left=30mm,
+right=15mm,
+bottom=20mm,
+top=20mm
+]{geometry}
+
+\usepackage{sectsty}
+\chaptertitlefont{\LARGE}
+
+% \usepackage{titlesec}
+% \titleformat{\chapter}
+%   {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+%\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+\usepackage{amsmath} 
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage[hidelinks]{hyperref}
+%\usepackage[colorlinks = true, linkcolor=black, urlcolor=black]{hyperref}
+\usepackage{amssymb}
+\usepackage[numbers]{natbib}
+\usepackage{enumerate}
+%\usepackage{color}
+
+\usepackage{verbatim}
+\usepackage{minted}
+
+%\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+%\renewcommand{\thetable}{\arabic{section}.\arabic{table}}
+
+\begin{document}
+
+\onehalfspacing
+
+\input{title}
+\newpage
+
+\input{text/abstract}
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\input{text/abbrev}
+
+%\newpage
+
+%\input{intro}
+
+%\newpage
+
+%\input{ch01}
+
+%\newpage
+
+%\input{ch02}
+
+%\clearpage
+%\newpage
+
+% \input{ch03}
+
+%\newpage
+
+%\input{conclusion}
+ 
+%\newpage
+
+\appendix
+
+% \input{ap01}
+
+ %\newpage
+
+\bibliographystyle{ugost2008l} 
+\bibliography{bib/cite}
+
+
+\end{document}

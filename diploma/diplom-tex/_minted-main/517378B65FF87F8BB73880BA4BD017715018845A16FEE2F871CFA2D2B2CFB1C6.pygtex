@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{mininet.link} \PYG{k+kn}{import} \PYG{n}{TCLink}
+\PYG{k+kn}{from} \PYG{n+nn}{mininet.net} \PYG{k+kn}{import} \PYG{n}{Mininet}
+\PYG{k+kn}{from} \PYG{n+nn}{mininet.node} \PYG{k+kn}{import} \PYG{n}{CPULimitedHost}
+\PYG{k+kn}{from} \PYG{n+nn}{mininet.topo} \PYG{k+kn}{import} \PYG{n}{Topo}
+
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+sd}{Создание простой топологии:}
+\PYG{l+s+sd}{10 хостов, 1 коммутатор, 10 соединений}
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{k}{class} \PYG{n+nc}{CustomTopology}\PYG{p}{(}\PYG{n}{Topo}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{o}{**}\PYG{n}{opts}\PYG{p}{):}
+        \PYG{n+nb}{super}\PYG{p}{(}\PYG{n}{CustomTopology}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{o}{**}\PYG{n}{opts}\PYG{p}{)}
+        \PYG{n}{s1} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{addSwitch}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}s1\PYGZdq{}}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{11}\PYG{p}{):}
+            \PYG{n}{host} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{addHost}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}h}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{i}\PYG{p}{,} \PYG{n}{ip}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}10.0.0.}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZpc{}} \PYG{n}{i}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{addLink}\PYG{p}{(}\PYG{n}{host}\PYG{p}{,} \PYG{n}{s1}\PYG{p}{)}
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+sd}{Запуск сети и проверка достижимости элементов}
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{p}{:}
+    \PYG{n}{topology} \PYG{o}{=} \PYG{n}{CustomTopology}\PYG{p}{()}
+    \PYG{n}{net} \PYG{o}{=} \PYG{n}{Mininet}\PYG{p}{(}\PYG{n}{topo}\PYG{o}{=}\PYG{n}{topology}\PYG{p}{,} \PYG{n}{host}\PYG{o}{=}\PYG{n}{CPULimitedHost}\PYG{p}{,} \PYG{n}{link}\PYG{o}{=}\PYG{n}{TCLink}\PYG{p}{)}
+    \PYG{n}{net}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Сеть заработала\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{net}\PYG{o}{.}\PYG{n}{pingAll}\PYG{p}{()}
+    \PYG{n}{net}\PYG{o}{.}\PYG{n}{stop}\PYG{p}{()}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Сеть остановилась\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

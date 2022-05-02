@@ -1,0 +1,74 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+
+\PYG{k+kn}{import} \PYG{n+nn}{toml}
+\PYG{k+kn}{from} \PYG{n+nn}{mininet.link} \PYG{k+kn}{import} \PYG{n}{TCLink}
+\PYG{k+kn}{from} \PYG{n+nn}{mininet.net} \PYG{k+kn}{import} \PYG{n}{Mininet}
+\PYG{k+kn}{from} \PYG{n+nn}{mininet.node} \PYG{k+kn}{import} \PYG{n}{CPULimitedHost}
+
+\PYG{k+kn}{from} \PYG{n+nn}{monitoring.Monitor} \PYG{k+kn}{import} \PYG{n}{Monitor}
+\PYG{k+kn}{from} \PYG{n+nn}{topology.CustomTopology} \PYG{k+kn}{import} \PYG{n}{CustomTopology}
+
+
+\PYG{k}{class} \PYG{n+nc}{CustomModel}\PYG{p}{:}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{topology\PYGZus{}config} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{devices\PYGZus{}startup\PYGZus{}configs} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{links\PYGZus{}config} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config} \PYG{o}{=} \PYG{k+kc}{None}
+
+    \PYG{c+c1}{\PYGZsh{} Конфигурация сетевых элементов}
+    \PYG{k}{def} \PYG{n+nf}{configure\PYGZus{}model}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{config\PYGZus{}file}\PYG{p}{):}
+        \PYG{k}{try}\PYG{p}{:}
+            \PYG{n}{file} \PYG{o}{=} \PYG{n}{toml}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{config\PYGZus{}file}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config} \PYG{o}{=} \PYG{n}{file}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}monitoring\PYGZdq{}}\PYG{p}{]}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{topology\PYGZus{}config} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}devices\PYGZdq{}}\PYG{p}{:} \PYG{n}{file}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}devices\PYGZdq{}}\PYG{p}{],}
+                                    \PYG{l+s+s2}{\PYGZdq{}switches\PYGZdq{}}\PYG{p}{:} \PYG{n}{file}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}switches\PYGZdq{}}\PYG{p}{],}
+                                    \PYG{l+s+s2}{\PYGZdq{}links\PYGZdq{}}\PYG{p}{:} \PYG{n}{file}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}links\PYGZdq{}}\PYG{p}{]\PYGZcb{}}
+
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{links\PYGZus{}config} \PYG{o}{=} \PYG{n}{file}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}links\PYGZdq{}}\PYG{p}{][}\PYG{l+s+s2}{\PYGZdq{}cmd\PYGZdq{}}\PYG{p}{]}
+            \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{file}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}devices\PYGZdq{}}\PYG{p}{]:}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{devices\PYGZus{}startup\PYGZus{}configs}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{file}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}devices\PYGZdq{}}\PYG{p}{][}\PYG{n}{i}\PYG{p}{][}\PYG{l+s+s2}{\PYGZdq{}cmd\PYGZdq{}}\PYG{p}{]}
+
+        \PYG{k}{except} \PYG{n+ne}{FileNotFoundError}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Введите корректное имя файла\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Симуляция модели}
+    \PYG{k}{def} \PYG{n+nf}{simulation}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n}{topology} \PYG{o}{=} \PYG{n}{CustomTopology}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{topology\PYGZus{}config}\PYG{p}{)}
+        \PYG{n}{net} \PYG{o}{=} \PYG{n}{Mininet}\PYG{p}{(}\PYG{n}{topo}\PYG{o}{=}\PYG{n}{topology}\PYG{p}{,} \PYG{n}{host}\PYG{o}{=}\PYG{n}{CPULimitedHost}\PYG{p}{,} \PYG{n}{link}\PYG{o}{=}\PYG{n}{TCLink}\PYG{p}{)}
+        \PYG{n}{net}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+        \PYG{k}{try}\PYG{p}{:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}\PYGZus{}configure\PYGZus{}links}\PYG{p}{()}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}\PYGZus{}configure\PYGZus{}devices}\PYG{p}{(}\PYG{n}{net}\PYG{o}{.}\PYG{n}{hosts}\PYG{p}{)}
+
+            \PYG{n}{h1}\PYG{p}{,} \PYG{n}{h2} \PYG{o}{=} \PYG{n}{net}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}host\PYGZus{}client\PYGZdq{}}\PYG{p}{],}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}host\PYGZus{}server\PYGZdq{}}\PYG{p}{]}
+            \PYG{p}{)}
+            \PYG{n}{monitor} \PYG{o}{=} \PYG{n}{Monitor}\PYG{p}{(}\PYG{n}{h1}\PYG{p}{,} \PYG{n}{h2}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}interface\PYGZdq{}}\PYG{p}{],}
+                              \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}plots\PYGZus{}dir\PYGZdq{}}\PYG{p}{])}
+            \PYG{n}{qlen\PYGZus{}mon\PYGZus{}time} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}monitoring\PYGZus{}time\PYGZdq{}}\PYG{p}{]}
+            \PYG{n}{iperf\PYGZus{}file} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}iperf\PYGZus{}file\PYGZus{}name\PYGZdq{}}\PYG{p}{]}
+            \PYG{n}{iperf\PYGZus{}commands} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}iperf\PYGZus{}flags\PYGZdq{}}\PYG{p}{]} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} \PYGZhy{}t }\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZpc{}} \PYGZbs{}
+                             \PYG{n}{qlen\PYGZus{}mon\PYGZus{}time}
+            \PYG{n}{qlen\PYGZus{}file} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}queue\PYGZus{}data\PYGZus{}file\PYGZus{}name\PYGZdq{}}\PYG{p}{]}
+            \PYG{n}{qlen\PYGZus{}mon\PYGZus{}interval} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{monitoring\PYGZus{}config}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}monitoring\PYGZus{}interval\PYGZdq{}}\PYG{p}{]}
+            \PYG{n}{monitor}\PYG{o}{.}\PYG{n}{net\PYGZus{}monitoring}\PYG{p}{(}\PYG{n}{iperf\PYGZus{}file}\PYG{p}{,} \PYG{n}{iperf\PYGZus{}commands}\PYG{p}{,} \PYG{n}{qlen\PYGZus{}file}\PYG{p}{,} \PYG{n}{qlen\PYGZus{}mon\PYGZus{}time}\PYG{p}{,} \PYG{n}{qlen\PYGZus{}mon\PYGZus{}interval}\PYG{p}{)}
+        \PYG{k}{finally}\PYG{p}{:}
+            \PYG{n}{net}\PYG{o}{.}\PYG{n}{stop}\PYG{p}{()}
+
+    \PYG{c+c1}{\PYGZsh{} Настройка соединений между сетевыми элементами}
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}configure\PYGZus{}links}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{links\PYGZus{}config}\PYG{p}{:}
+            \PYG{n}{os}\PYG{o}{.}\PYG{n}{system}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Настройка хостов}
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}configure\PYGZus{}devices}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{devices}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{devices}\PYG{p}{:}
+            \PYG{n}{command} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{devices\PYGZus{}startup\PYGZus{}configs}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)]}
+            \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n}{command}\PYG{p}{:}
+                \PYG{n}{i}\PYG{o}{.}\PYG{n}{popen}\PYG{p}{(}\PYG{n}{j}\PYG{p}{)}
+
+\end{Verbatim}

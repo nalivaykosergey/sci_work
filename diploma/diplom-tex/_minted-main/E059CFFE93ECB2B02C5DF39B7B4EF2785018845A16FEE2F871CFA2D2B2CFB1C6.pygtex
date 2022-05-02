@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{[}
+\PYG{n}{frame}\PYG{o}{=}\PYG{n}{lines}\PYG{p}{,}
+\PYG{n}{framesep}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{n}{mm}\PYG{p}{,}
+\PYG{n}{baselinestretch}\PYG{o}{=}\PYG{l+m+mf}{1.2}\PYG{p}{,}
+\PYG{n}{fontsize}\PYG{o}{=}\PYGZbs{}\PYG{n}{footnotesize}\PYG{p}{,}
+\PYG{n}{linenos}
+\PYG{p}{]}
+\PYG{p}{\PYGZob{}}\PYG{n}{kconfig}\PYG{p}{\PYGZcb{}}
+\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+s1}{\PYGZsh{} device settings}
+\PYG{l+s+s1}{[devices]}
+\PYG{l+s+s1}{    [devices.h1]}
+\PYG{l+s+s1}{        name = \PYGZdq{}h1\PYGZdq{}}
+\PYG{l+s+s1}{        ip = \PYGZdq{}10.0.0.1\PYGZdq{}}
+\PYG{l+s+s1}{        cmd = [ \PYGZdq{}sysctl \PYGZhy{}w net.ipv4.tcp\PYGZus{}congestion\PYGZus{}control=reno\PYGZdq{} ]}
+\PYG{l+s+s1}{    [devices.h2]}
+\PYG{l+s+s1}{        name = \PYGZdq{}h2\PYGZdq{}}
+\PYG{l+s+s1}{        ip = \PYGZdq{}10.0.0.2\PYGZdq{}}
+\PYG{l+s+s1}{        cmd = [ \PYGZdq{}sysctl \PYGZhy{}w net.ipv4.tcp\PYGZus{}congestion\PYGZus{}control=reno\PYGZdq{} ]}
+\PYG{l+s+s1}{\PYGZsh{} switch settings}
+\PYG{l+s+s1}{[switches]}
+\PYG{l+s+s1}{    [switches.s1]}
+\PYG{l+s+s1}{        name = \PYGZdq{}s1\PYGZdq{}}
+\PYG{l+s+s1}{    [switches.s2]}
+\PYG{l+s+s1}{        name = \PYGZdq{}s2\PYGZdq{}}
+\PYG{l+s+s1}{\PYGZsh{} link settings}
+\PYG{l+s+s1}{[links]}
+\PYG{l+s+s1}{pairs = [}
+\PYG{l+s+s1}{    [\PYGZdq{}h1\PYGZdq{}, \PYGZdq{}s1\PYGZdq{}],}
+\PYG{l+s+s1}{    [\PYGZdq{}s1\PYGZdq{}, \PYGZdq{}s2\PYGZdq{}],}
+\PYG{l+s+s1}{    [\PYGZdq{}s2\PYGZdq{}, \PYGZdq{}h2\PYGZdq{}]}
+\PYG{l+s+s1}{]}
+\PYG{l+s+s1}{cmd = [}
+\PYG{l+s+s1}{    \PYGZdq{}tc qdisc replace dev s1\PYGZhy{}eth2 root handle 10: tbf rate 100mbit burst 50000 limit 150000\PYGZdq{},}
+\PYG{l+s+s1}{    \PYGZdq{}tc qdisc add dev s1\PYGZhy{}eth2 parent 10: handle 20: netem loss 0.001}\PYG{l+s+si}{\PYGZpc{} d}\PYG{l+s+s1}{elay 30ms 7ms distribution normal\PYGZdq{},}
+\PYG{l+s+s1}{    \PYGZdq{}tc qdisc replace dev s1\PYGZhy{}eth1 root handle 10: tbf rate 100mbit burst 50000 limit 150000\PYGZdq{},}
+\PYG{l+s+s1}{    \PYGZdq{}tc qdisc add dev s1\PYGZhy{}eth1 parent 10: handle 20: netem loss 0.001}\PYG{l+s+si}{\PYGZpc{} d}\PYG{l+s+s1}{elay 30ms 7ms distribution normal\PYGZdq{},}
+\PYG{l+s+s1}{    \PYGZdq{}tc qdisc replace dev s2\PYGZhy{}eth2 root handle 10: tbf rate 50mbit burst 25000 limit 75000\PYGZdq{},}
+\PYG{l+s+s1}{    \PYGZdq{}tc qdisc add dev s2\PYGZhy{}eth2 parent 10: handle 15: pfifo limit 30\PYGZdq{},}
+\PYG{l+s+s1}{    \PYGZdq{}tc qdisc replace dev s2\PYGZhy{}eth1 root handle 10: tbf rate 50mbit burst 25000 limit 75000\PYGZdq{}}
+\PYG{l+s+s1}{]}
+\PYG{l+s+s1}{[monitoring]}
+\PYG{l+s+s1}{monitoring\PYGZus{}time = 60}
+\PYG{l+s+s1}{monitoring\PYGZus{}interval = 0.005}
+\PYG{l+s+s1}{host\PYGZus{}client = \PYGZdq{}h1\PYGZdq{}}
+\PYG{l+s+s1}{host\PYGZus{}server = \PYGZdq{}h2\PYGZdq{}}
+\PYG{l+s+s1}{interface = \PYGZdq{}s2\PYGZhy{}eth2\PYGZdq{}}
+\PYG{l+s+s1}{iperf\PYGZus{}file\PYGZus{}name = \PYGZdq{}iperf.json\PYGZdq{}}
+\PYG{l+s+s1}{iperf\PYGZus{}flags = \PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s1}{queue\PYGZus{}data\PYGZus{}file\PYGZus{}name = \PYGZdq{}qlen.data\PYGZdq{}}
+\PYG{l+s+s1}{plots\PYGZus{}dir = \PYGZdq{}plots\PYGZus{}dir\PYGZus{}first\PYGZdq{}}
+\end{Verbatim}

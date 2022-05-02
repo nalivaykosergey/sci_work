@@ -1,0 +1,72 @@
+\begin{titlepage}
+  
+  \begin{center}
+    \textbf{Министерство науки и высшего образования \\
+      Российской Федерации\\
+      Федеральное государственное автономное образовательное
+      учреждение высшего образования\\
+      <<РОССИЙСКИЙ УНИВЕРСИТЕТ ДРУЖБЫ НАРОДОВ>>}\\[5mm]
+    Факультет физико-математических и естественных наук \\[2mm]
+    Кафедра прикладной информатики и теории вероятностей
+
+    \vfill
+
+    \hfill
+    \begin{minipage}{.5\textwidth}
+      «Допустить к защите» \\ [2mm]
+      Заведующий кафедрой прикладной информатики и теории вероятностей \\[2mm]
+      д.т.н., профессор  \\[2mm]
+      \underline{\hspace{3cm}} К.Е. Самуйлов \\
+      ``\underline{\hspace{1cm}}''\underline{\hspace{3cm}}20\underline{\hspace{1cm}}г.
+    \end{minipage}%
+
+    \vfill
+
+    \textbf{Выпускная квалификационная работа бакалавра} \\[3mm]
+
+    Направление 02.03.02 «Фундаментальная информатика и информационные
+    технологии»\\ [3mm]
+  
+    ТЕМА <<Моделирование сети передачи данных в Mininet>>\\[3mm]
+
+    Выполнил студент: Ассан Акосси Жан-Самуэль
+  \end{center}
+
+
+
+  \begin{minipage}{.45\textwidth}
+    Группа НФИбд-03-18\\
+    Студенческий билет № 1032185594 \\ \\ \\ \\ \\ \\
+    % Выполнил: \\ [2mm]
+    % студент группы НФИ-03-18\\[2mm]
+    % \underline{\hspace{3cm}} Ассан Акосси Жан-Самуэль\\
+    % (студенческий билет № 1032185594) \\[2mm] \\
+    % ``\underline{\hspace{1cm}}''\underline{\hspace{3cm}}20\underline{\hspace{1cm}}г.
+  \end{minipage}%
+  \hfill
+  \begin{minipage}{.5\textwidth}
+    Руководитель выпускной
+    квалификационной работы: \\ [2mm]
+    Королькова А. B., к.ф.-м.н., доцент, доцент кафедры прикладной
+    информатики и теории вероятностей\\[2mm]
+    \underline{\hspace{3cm}} \\
+    ``\underline{\hspace{1cm}}''\underline{\hspace{3cm}}20\underline{\hspace{1cm}}г.
+\end{minipage}%
+
+\vfill
+
+\hfill
+\begin{minipage}{.5\textwidth}
+  Автор: \underline{\hspace{3cm}} \\
+  ``\underline{\hspace{1cm}}''\underline{\hspace{3cm}}20\underline{\hspace{1cm}}г.
+\end{minipage}%
+
+
+\vfill
+
+\centering
+г. Москва
+
+\centering
+2022 г.
+\end{titlepage}

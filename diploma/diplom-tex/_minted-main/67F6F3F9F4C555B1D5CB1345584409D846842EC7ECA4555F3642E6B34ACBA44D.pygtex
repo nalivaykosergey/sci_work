@@ -1,0 +1,52 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYGZsq{}
+\PYG{c+c1}{\PYGZsh{} device settings}
+[devices]
+\PYG{+w}{    }[devices.h1]
+\PYG{+w}{        }name\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}h1\PYGZdq{}}
+\PYG{+w}{        }ip\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}10.0.0.1\PYGZdq{}}
+\PYG{+w}{        }cmd\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }[
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}sysctl \PYGZhy{}w net.ipv4.tcp\PYGZus{}congestion\PYGZus{}control=reno\PYGZdq{}}
+\PYG{+w}{        }]
+\PYG{+w}{    }[devices.h2]
+\PYG{+w}{        }name\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}h2\PYGZdq{}}
+\PYG{+w}{        }ip\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}10.0.0.2\PYGZdq{}}
+\PYG{+w}{        }cmd\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }[
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}sysctl \PYGZhy{}w net.ipv4.tcp\PYGZus{}congestion\PYGZus{}control=reno\PYGZdq{}}
+\PYG{+w}{        }]
+
+\PYG{c+c1}{\PYGZsh{} switch settings}
+[switches]
+\PYG{+w}{    }[switches.s1]
+\PYG{+w}{        }name\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}s1\PYGZdq{}}
+\PYG{+w}{    }[switches.s2]
+\PYG{+w}{        }name\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}s2\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} link settings}
+[links]
+pairs\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }[
+\PYG{+w}{    }[\PYGZdq{}h1\PYGZdq{},\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}s1\PYGZdq{}}],
+\PYG{+w}{    }[\PYGZdq{}s1\PYGZdq{},\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}s2\PYGZdq{}}],
+\PYG{+w}{    }[\PYGZdq{}s2\PYGZdq{},\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}h2\PYGZdq{}}]
+]
+cmd\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }[
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s1\PYGZhy{}eth2 root handle 10: tbf rate 100mbit burst 50000 limit 150000\PYGZdq{}},
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s1\PYGZhy{}eth2 parent 10: handle 20: netem loss 0.001\PYGZpc{} delay 30ms 7ms distribution normal\PYGZdq{}},
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s1\PYGZhy{}eth1 root handle 10: tbf rate 100mbit burst 50000 limit 150000\PYGZdq{}},
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s1\PYGZhy{}eth1 parent 10: handle 20: netem loss 0.001\PYGZpc{} delay 30ms 7ms distribution normal\PYGZdq{}},
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s2\PYGZhy{}eth2 root handle 10: tbf rate 50mbit burst 25000 limit 75000\PYGZdq{}},
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}tc qdisc add dev s2\PYGZhy{}eth2 parent 10: handle 15: pfifo limit 30\PYGZdq{}},
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}tc qdisc replace dev s2\PYGZhy{}eth1 root handle 10: tbf rate 50mbit burst 25000 limit 75000\PYGZdq{}}
+]
+
+[monitoring]
+monitoring\PYGZus{}time\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{60}
+monitoring\PYGZus{}interval\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}.005
+host\PYGZus{}client\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}h1\PYGZdq{}}
+host\PYGZus{}server\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}h2\PYGZdq{}}
+interface\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}s2\PYGZhy{}eth2\PYGZdq{}}
+iperf\PYGZus{}file\PYGZus{}name\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}iperf.json\PYGZdq{}}
+iperf\PYGZus{}flags\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}
+queue\PYGZus{}data\PYGZus{}file\PYGZus{}name\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}qlen.data\PYGZdq{}}
+plots\PYGZus{}dir\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}plots\PYGZus{}dir\PYGZus{}first\PYGZdq{}}
+\end{Verbatim}
